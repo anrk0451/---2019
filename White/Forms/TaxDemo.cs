@@ -458,7 +458,7 @@ namespace White.Forms
 			Dictionary<string, object> sendmsg = new Dictionary<string, object>();
 		
 			sendmsg.Add("serviceid", "DJAPP");
-			//sendmsg.Add("sid", "0000000060");                  //请求流水号	
+			//sendmsg.Add("sid", "00000000601");                  //请求流水号	
 			sendmsg.Add("dev_key", "9011e4c9-4070-4a0e-a571-baadb7588723");
 			sendmsg.Add("app_name", "牡丹江第二殡仪馆管理系统");
 			//3.将请求报文转换为Json 字符串 并整体用公钥 加密

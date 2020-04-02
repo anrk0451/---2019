@@ -163,7 +163,7 @@
             this.ribbon.QuickToolbarItemLinks.Add(this.barButtonItem39);
             this.ribbon.QuickToolbarItemLinks.Add(this.barButtonItem40);
             this.ribbon.QuickToolbarItemLinks.Add(this.barButtonItem41);
-            this.ribbon.Size = new System.Drawing.Size(1359, 186);
+            this.ribbon.Size = new System.Drawing.Size(1208, 186);
             this.ribbon.StatusBar = this.ribbonStatusBar;
             // 
             // barButtonItem1
@@ -372,7 +372,6 @@
             this.barButtonItem26.Id = 27;
             this.barButtonItem26.ImageOptions.SvgImage = global::White.Properties.Resources.shopping_barcode;
             this.barButtonItem26.Name = "barButtonItem26";
-            this.barButtonItem26.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barButtonItem26.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem26_ItemClick);
             // 
             // barButtonItem27
@@ -651,7 +650,7 @@
             this.ribbonStatusBar.Location = new System.Drawing.Point(0, 616);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbon;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(1359, 29);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(1208, 29);
             // 
             // xtraTabControl1
             // 
@@ -660,7 +659,7 @@
             this.xtraTabControl1.Location = new System.Drawing.Point(0, 186);
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
-            this.xtraTabControl1.Size = new System.Drawing.Size(1359, 430);
+            this.xtraTabControl1.Size = new System.Drawing.Size(1208, 430);
             this.xtraTabControl1.TabIndex = 2;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1});
@@ -671,7 +670,7 @@
             this.xtraTabPage1.Controls.Add(this.pictureEdit1);
             this.xtraTabPage1.Name = "xtraTabPage1";
             this.xtraTabPage1.ShowCloseButton = DevExpress.Utils.DefaultBoolean.False;
-            this.xtraTabPage1.Size = new System.Drawing.Size(1357, 398);
+            this.xtraTabPage1.Size = new System.Drawing.Size(1206, 398);
             this.xtraTabPage1.Text = "欢迎";
             // 
             // pictureEdit1
@@ -686,14 +685,14 @@
             this.pictureEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.pictureEdit1.Size = new System.Drawing.Size(1357, 398);
+            this.pictureEdit1.Size = new System.Drawing.Size(1206, 398);
             this.pictureEdit1.TabIndex = 0;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1359, 645);
+            this.ClientSize = new System.Drawing.Size(1208, 645);
             this.Controls.Add(this.xtraTabControl1);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbon);
