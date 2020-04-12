@@ -86,6 +86,9 @@
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\..\..\dll\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\dll\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\dll\Newtonsoft.Json.dll</HintPath>
@@ -143,6 +146,12 @@
     <Compile Include="BaseObject\CheckedListBoxOnlyOne.Designer.cs">
       <DependentUpon>CheckedListBoxOnlyOne.cs</DependentUpon>
     </Compile>
+    <Compile Include="BusinessObject\Report_FinItemStat.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BusinessObject\Report_FinItemStat.Designer.cs">
+      <DependentUpon>Report_FinItemStat.cs</DependentUpon>
+    </Compile>
     <Compile Include="BusinessObject\Report_FirePlan.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -155,12 +164,25 @@
     <Compile Include="BusinessObject\Report_RegDebtData.Designer.cs">
       <DependentUpon>Report_RegDebtData.cs</DependentUpon>
     </Compile>
+    <Compile Include="BusinessObject\Report_workstation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BusinessObject\Report_workstation.Designer.cs">
+      <DependentUpon>Report_workstation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Frm_report_regdebt.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Frm_report_regdebt.Designer.cs">
       <DependentUpon>Frm_report_regdebt.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Frm_wsStat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Frm_wsStat.Designer.cs">
+      <DependentUpon>Frm_wsStat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Misc\LogUtils.cs" />
     <Compile Include="Report\Item_stat_Report.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -651,11 +673,20 @@
     <EmbeddedResource Include="BaseObject\CheckedListBoxOnlyOne.resx">
       <DependentUpon>CheckedListBoxOnlyOne.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BusinessObject\Report_FinItemStat.resx">
+      <DependentUpon>Report_FinItemStat.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BusinessObject\Report_RegDebtData.resx">
       <DependentUpon>Report_RegDebtData.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BusinessObject\Report_workstation.resx">
+      <DependentUpon>Report_workstation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Frm_report_regdebt.resx">
       <DependentUpon>Frm_report_regdebt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Frm_wsStat.resx">
+      <DependentUpon>Frm_wsStat.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\Item_stat_Report.resx">
       <DependentUpon>Item_stat_Report.cs</DependentUpon>
@@ -880,6 +911,7 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
+    <None Include="log4net.config" />
     <None Include="packages.config" />
     <None Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

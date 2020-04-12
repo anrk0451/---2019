@@ -544,6 +544,22 @@ namespace White
 			openBusinessObject("Report_FinRollBack");
 		}
 
+		//财政项目发票统计
+		private void barButtonItem22_ItemClick(object sender, ItemClickEventArgs e)
+		{
+			openBusinessObject("Report_FinItemStat");
+		}
+
+		/// <summary>
+		/// 工作站收款统计
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void barButtonItem21_ItemClick(object sender, ItemClickEventArgs e)
+		{
+			openBusinessObject("Report_workstation");
+		}
+
 		/// <summary>
 		/// 处理窗口消息
 		/// </summary>

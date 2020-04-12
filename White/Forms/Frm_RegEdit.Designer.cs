@@ -188,8 +188,7 @@
             this.rg_rc202.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.rg_rc202.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
             new DevExpress.XtraEditors.Controls.RadioGroupItem("0", "男"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem("1", "女"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem("2", "未知")});
+            new DevExpress.XtraEditors.Controls.RadioGroupItem("1", "女")});
             this.rg_rc202.Size = new System.Drawing.Size(165, 24);
             this.rg_rc202.TabIndex = 174;
             // 
@@ -356,8 +355,7 @@
             this.rg_rc002.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.rg_rc002.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
             new DevExpress.XtraEditors.Controls.RadioGroupItem("0", "男"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem("1", "女"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem("2", "未知")});
+            new DevExpress.XtraEditors.Controls.RadioGroupItem("1", "女")});
             this.rg_rc002.Size = new System.Drawing.Size(165, 24);
             this.rg_rc002.TabIndex = 159;
             this.rg_rc002.SelectedIndexChanged += new System.EventHandler(this.rg_rc002_SelectedIndexChanged);

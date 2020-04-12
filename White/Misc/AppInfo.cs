@@ -24,6 +24,12 @@ namespace White
         private static int _TAXITEMCOUNT = 8;                       //打印发票清单阈值
 		private static string _REG_TAX_NAME = "寄存费";				//寄存费税务名称
 
+        private static string _FIN_TRAFFIC = "90001";               //接运
+        private static string _FIN_FIRE = "90003";                  //火化
+        private static string _FIN_STORE = "90002";                 //存放
+        private static string _FIN_REGISTER = "90004";              //骨灰寄存
+
+
         public static string UnitName
         {
             get { return AppInfo._UnitName; }
@@ -66,6 +72,26 @@ namespace White
         public static int GRID_WIDTH
         {
             get { return _GRID_WIDTH; }
+        }
+
+        public static string FIN_TRAFFIC
+        {
+            get { return _FIN_TRAFFIC; }
+        }
+
+        public static string FIN_FIRE
+        {
+            get { return _FIN_FIRE; }
+        }
+
+        public static string FIN_STORE
+        {
+            get { return _FIN_STORE; }
+        }
+
+        public static string FIN_REGISTER
+        {
+            get { return _FIN_REGISTER; }
         }
     }
 }

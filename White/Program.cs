@@ -7,7 +7,7 @@ using DevExpress.Skins;
 using DevExpress.LookAndFeel;
 using System.Diagnostics;
 using System.Text;
-
+using White.Misc;
 
 namespace White
 {
@@ -50,9 +50,8 @@ namespace White
 				SqlAssist.ConnectDb();
 
 				///// 检查版本  ///////
-				//MessageBox.Show(AppInfo.AppVersion,"当前版本");
 				string curNewestVersion = Tools.getNewVersion();
-				//MessageBox.Show(curNewestVersion, "服务器版本");
+ 
 				if (string.Compare(curNewestVersion, AppInfo.AppVersion) > 0)
 				{
 					MessageBox.Show("服务器发现更新的版本!系统需要升级", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -63,10 +62,6 @@ namespace White
 
 					try
 					{
-						//myProcess.StartInfo.UseShellExecute = false;
-						//myProcess.StartInfo.FileName = pname;
-						//myProcess.StartInfo.CreateNoWindow = true;
-
 						Process.Start("Upgrade.exe", curNewestVersion);
 					}
 					catch (Exception e)
@@ -87,6 +82,7 @@ namespace White
 			{
 				string str = GetExceptionMsg(ex, string.Empty);
 				MessageBox.Show(str, "系统错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				LogUtils.Error(str);
 			}
 		}
 
@@ -94,14 +90,14 @@ namespace White
 		{
 			string str = GetExceptionMsg(e.Exception, e.ToString());
 			MessageBox.Show(str, "系统错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			//LogManager.WriteLog(str);
+			LogUtils.Error(str);
 		}
 
 		static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
 		{
 			string str = GetExceptionMsg(e.ExceptionObject as Exception, e.ToString());
 			MessageBox.Show(str, "系统错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			//LogManager.WriteLog(str);
+			LogUtils.Error(str);
 		}
 
 

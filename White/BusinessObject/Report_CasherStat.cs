@@ -128,7 +128,14 @@ namespace White.BusinessObject
                 gridColumn16.SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum;
                 gridColumn16.SummaryItem.DisplayFormat = "{0:N2}";
 
-                groupControl1.Text = "统计日期 " + s_begin + "至" + s_end;
+                decimal dec_total = Convert.ToDecimal(gridView_center.Columns["gridColumn18"].SummaryItem.SummaryValue);
+                decimal dec_fin_sum = Convert.ToDecimal(gridView_center.Columns["FIN_JE"].SummaryItem.SummaryValue);
+                decimal dec_tax_sum = Convert.ToDecimal(gridView_center.Columns["TAX_JE"].SummaryItem.SummaryValue);
+
+                if (dec_total == dec_fin_sum + dec_tax_sum)
+                    groupControl1.Text = "统计日期 " + s_begin + "至" + s_end;
+                else
+                    groupControl1.Text = "<color=255,0,0>统计日期 " + s_begin + "至" + s_end + "</color>";
 
                 this.Cursor = Cursors.Arrow;
             }

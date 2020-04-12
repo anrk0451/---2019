@@ -104,6 +104,7 @@
             this.gridColumn26 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn27 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn28 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn31 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
@@ -291,7 +292,7 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(1540, 34);
+            this.barDockControlTop.Size = new System.Drawing.Size(1369, 35);
             // 
             // barDockControlBottom
             // 
@@ -299,23 +300,23 @@
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.barDockControlBottom.Location = new System.Drawing.Point(0, 742);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(1540, 0);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1369, 0);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 34);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 35);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 708);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 707);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1540, 34);
+            this.barDockControlRight.Location = new System.Drawing.Point(1369, 35);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 708);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 707);
             // 
             // barButtonItem7
             // 
@@ -358,14 +359,14 @@
             this.tabPane1.Controls.Add(this.tabNavigationPage1);
             this.tabPane1.Controls.Add(this.tabNavigationPage2);
             this.tabPane1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabPane1.Location = new System.Drawing.Point(0, 34);
+            this.tabPane1.Location = new System.Drawing.Point(0, 35);
             this.tabPane1.Name = "tabPane1";
             this.tabPane1.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] {
             this.tabNavigationPage1,
             this.tabNavigationPage2});
-            this.tabPane1.RegularSize = new System.Drawing.Size(1540, 708);
+            this.tabPane1.RegularSize = new System.Drawing.Size(1369, 707);
             this.tabPane1.SelectedPage = this.tabNavigationPage1;
-            this.tabPane1.Size = new System.Drawing.Size(1540, 708);
+            this.tabPane1.Size = new System.Drawing.Size(1369, 707);
             this.tabPane1.TabIndex = 4;
             this.tabPane1.Text = "tabPane1";
             this.tabPane1.SelectedPageIndexChanged += new System.EventHandler(this.tabPane1_SelectedPageIndexChanged);
@@ -378,7 +379,7 @@
             this.tabNavigationPage1.ItemShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.ImageAndText;
             this.tabNavigationPage1.Name = "tabNavigationPage1";
             this.tabNavigationPage1.Properties.ShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.ImageAndText;
-            this.tabNavigationPage1.Size = new System.Drawing.Size(1540, 673);
+            this.tabNavigationPage1.Size = new System.Drawing.Size(1369, 672);
             // 
             // splitContainerControl1
             // 
@@ -390,7 +391,7 @@
             this.splitContainerControl1.Panel1.Text = "Panel1";
             this.splitContainerControl1.Panel2.Controls.Add(this.gridControl2);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1540, 673);
+            this.splitContainerControl1.Size = new System.Drawing.Size(1369, 672);
             this.splitContainerControl1.SplitterPosition = 379;
             this.splitContainerControl1.TabIndex = 0;
             // 
@@ -403,7 +404,7 @@
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit1,
             this.repositoryItemHyperLinkEdit1});
-            this.gridControl1.Size = new System.Drawing.Size(1540, 379);
+            this.gridControl1.Size = new System.Drawing.Size(1369, 379);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -426,9 +427,10 @@
             this.gridColumn25,
             this.gridColumn1,
             this.gridColumn2,
-            this.gridColumn3});
+            this.gridColumn3,
+            this.gridColumn31});
             this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.IndicatorWidth = 51;
+            this.gridView1.IndicatorWidth = 45;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsCustomization.AllowFilter = false;
@@ -444,39 +446,34 @@
             // 
             this.gridColumn5.Caption = "结算流水号";
             this.gridColumn5.FieldName = "FA001";
-            this.gridColumn5.MinWidth = 22;
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 0;
-            this.gridColumn5.Width = 147;
+            this.gridColumn5.Width = 131;
             // 
             // gridColumn17
             // 
             this.gridColumn17.Caption = "交款人(单位)";
             this.gridColumn17.FieldName = "FA003";
-            this.gridColumn17.MinWidth = 22;
             this.gridColumn17.Name = "gridColumn17";
             this.gridColumn17.Visible = true;
-            this.gridColumn17.VisibleIndex = 2;
-            this.gridColumn17.Width = 232;
+            this.gridColumn17.VisibleIndex = 3;
+            this.gridColumn17.Width = 206;
             // 
             // gridColumn18
             // 
             this.gridColumn18.Caption = "gridColumn3";
             this.gridColumn18.FieldName = "FA002";
-            this.gridColumn18.MinWidth = 22;
             this.gridColumn18.Name = "gridColumn18";
-            this.gridColumn18.Width = 84;
             // 
             // gridColumn19
             // 
             this.gridColumn19.Caption = "业务类型";
             this.gridColumn19.FieldName = "FA002_TEXT";
-            this.gridColumn19.MinWidth = 22;
             this.gridColumn19.Name = "gridColumn19";
             this.gridColumn19.Visible = true;
-            this.gridColumn19.VisibleIndex = 3;
-            this.gridColumn19.Width = 107;
+            this.gridColumn19.VisibleIndex = 4;
+            this.gridColumn19.Width = 95;
             // 
             // gridCol_Fa004
             // 
@@ -484,29 +481,26 @@
             this.gridCol_Fa004.DisplayFormat.FormatString = "N2";
             this.gridCol_Fa004.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridCol_Fa004.FieldName = "FA004";
-            this.gridCol_Fa004.MinWidth = 22;
             this.gridCol_Fa004.Name = "gridCol_Fa004";
             this.gridCol_Fa004.Visible = true;
-            this.gridCol_Fa004.VisibleIndex = 4;
-            this.gridCol_Fa004.Width = 163;
+            this.gridCol_Fa004.VisibleIndex = 5;
+            this.gridCol_Fa004.Width = 145;
             // 
             // gridColumn22
             // 
             this.gridColumn22.Caption = "gridColumn7";
             this.gridColumn22.FieldName = "FA100";
-            this.gridColumn22.MinWidth = 22;
             this.gridColumn22.Name = "gridColumn22";
-            this.gridColumn22.Width = 206;
+            this.gridColumn22.Width = 183;
             // 
             // gridColumn23
             // 
             this.gridColumn23.Caption = "收款人";
             this.gridColumn23.FieldName = "HANDLER";
-            this.gridColumn23.MinWidth = 22;
             this.gridColumn23.Name = "gridColumn23";
             this.gridColumn23.Visible = true;
-            this.gridColumn23.VisibleIndex = 5;
-            this.gridColumn23.Width = 107;
+            this.gridColumn23.VisibleIndex = 6;
+            this.gridColumn23.Width = 95;
             // 
             // gridColumn24
             // 
@@ -514,30 +508,27 @@
             this.gridColumn24.DisplayFormat.FormatString = "g";
             this.gridColumn24.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.gridColumn24.FieldName = "FA200";
-            this.gridColumn24.MinWidth = 22;
             this.gridColumn24.Name = "gridColumn24";
             this.gridColumn24.Visible = true;
-            this.gridColumn24.VisibleIndex = 6;
-            this.gridColumn24.Width = 172;
+            this.gridColumn24.VisibleIndex = 7;
+            this.gridColumn24.Width = 153;
             // 
             // gridColumn25
             // 
             this.gridColumn25.Caption = "gridColumn16";
             this.gridColumn25.FieldName = "AC001";
-            this.gridColumn25.MinWidth = 22;
             this.gridColumn25.Name = "gridColumn25";
-            this.gridColumn25.Width = 84;
             // 
             // gridColumn1
             // 
             this.gridColumn1.Caption = "已开发票";
             this.gridColumn1.ColumnEdit = this.repositoryItemHyperLinkEdit1;
             this.gridColumn1.FieldName = "FA190";
-            this.gridColumn1.MinWidth = 28;
+            this.gridColumn1.MinWidth = 25;
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 7;
-            this.gridColumn1.Width = 112;
+            this.gridColumn1.VisibleIndex = 8;
+            this.gridColumn1.Width = 100;
             // 
             // repositoryItemHyperLinkEdit1
             // 
@@ -548,21 +539,21 @@
             // 
             this.gridColumn2.Caption = "应开发票";
             this.gridColumn2.FieldName = "FA195";
-            this.gridColumn2.MinWidth = 28;
+            this.gridColumn2.MinWidth = 25;
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 8;
-            this.gridColumn2.Width = 112;
+            this.gridColumn2.VisibleIndex = 9;
+            this.gridColumn2.Width = 100;
             // 
             // gridColumn3
             // 
             this.gridColumn3.Caption = "逝者姓名";
             this.gridColumn3.FieldName = "GUYNAME";
-            this.gridColumn3.MinWidth = 28;
+            this.gridColumn3.MinWidth = 25;
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 1;
-            this.gridColumn3.Width = 106;
+            this.gridColumn3.VisibleIndex = 2;
+            this.gridColumn3.Width = 94;
             // 
             // repositoryItemCheckEdit1
             // 
@@ -580,7 +571,7 @@
             this.gridControl2.MainView = this.gridView2;
             this.gridControl2.MenuManager = this.barManager1;
             this.gridControl2.Name = "gridControl2";
-            this.gridControl2.Size = new System.Drawing.Size(1540, 279);
+            this.gridControl2.Size = new System.Drawing.Size(1369, 278);
             this.gridControl2.TabIndex = 2;
             this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -612,27 +603,22 @@
             // 
             this.gridColumn10.Caption = "gridColumn10";
             this.gridColumn10.FieldName = "SA001";
-            this.gridColumn10.MinWidth = 22;
             this.gridColumn10.Name = "gridColumn10";
-            this.gridColumn10.Width = 84;
             // 
             // gridColumn11
             // 
             this.gridColumn11.Caption = "gridColumn11";
             this.gridColumn11.FieldName = "SA002";
-            this.gridColumn11.MinWidth = 22;
             this.gridColumn11.Name = "gridColumn11";
-            this.gridColumn11.Width = 84;
             // 
             // gridColumn12
             // 
             this.gridColumn12.Caption = "项目名称";
             this.gridColumn12.FieldName = "SA003";
-            this.gridColumn12.MinWidth = 22;
             this.gridColumn12.Name = "gridColumn12";
             this.gridColumn12.Visible = true;
             this.gridColumn12.VisibleIndex = 0;
-            this.gridColumn12.Width = 169;
+            this.gridColumn12.Width = 150;
             // 
             // gridColumn13
             // 
@@ -640,11 +626,10 @@
             this.gridColumn13.DisplayFormat.FormatString = "N2";
             this.gridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn13.FieldName = "PRICE";
-            this.gridColumn13.MinWidth = 22;
             this.gridColumn13.Name = "gridColumn13";
             this.gridColumn13.Visible = true;
             this.gridColumn13.VisibleIndex = 1;
-            this.gridColumn13.Width = 112;
+            this.gridColumn13.Width = 100;
             // 
             // gridColumn14
             // 
@@ -652,11 +637,10 @@
             this.gridColumn14.DisplayFormat.FormatString = "N1";
             this.gridColumn14.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn14.FieldName = "NUMS";
-            this.gridColumn14.MinWidth = 22;
             this.gridColumn14.Name = "gridColumn14";
             this.gridColumn14.Visible = true;
             this.gridColumn14.VisibleIndex = 2;
-            this.gridColumn14.Width = 96;
+            this.gridColumn14.Width = 85;
             // 
             // gridColumn15
             // 
@@ -664,11 +648,10 @@
             this.gridColumn15.DisplayFormat.FormatString = "N2";
             this.gridColumn15.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn15.FieldName = "SA007";
-            this.gridColumn15.MinWidth = 22;
             this.gridColumn15.Name = "gridColumn15";
             this.gridColumn15.Visible = true;
             this.gridColumn15.VisibleIndex = 3;
-            this.gridColumn15.Width = 141;
+            this.gridColumn15.Width = 125;
             // 
             // tabNavigationPage2
             // 
@@ -678,7 +661,7 @@
             this.tabNavigationPage2.ItemShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.ImageAndText;
             this.tabNavigationPage2.Name = "tabNavigationPage2";
             this.tabNavigationPage2.Properties.ShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.ImageAndText;
-            this.tabNavigationPage2.Size = new System.Drawing.Size(1540, 673);
+            this.tabNavigationPage2.Size = new System.Drawing.Size(1369, 673);
             // 
             // splitContainerControl2
             // 
@@ -690,7 +673,7 @@
             this.splitContainerControl2.Panel1.Text = "Panel1";
             this.splitContainerControl2.Panel2.Controls.Add(this.gridControl4);
             this.splitContainerControl2.Panel2.Text = "Panel2";
-            this.splitContainerControl2.Size = new System.Drawing.Size(1540, 673);
+            this.splitContainerControl2.Size = new System.Drawing.Size(1369, 673);
             this.splitContainerControl2.SplitterPosition = 481;
             this.splitContainerControl2.TabIndex = 0;
             // 
@@ -703,7 +686,7 @@
             this.gridControl3.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit2,
             this.repositoryItemHyperLinkEdit2});
-            this.gridControl3.Size = new System.Drawing.Size(1540, 481);
+            this.gridControl3.Size = new System.Drawing.Size(1369, 481);
             this.gridControl3.TabIndex = 5;
             this.gridControl3.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView3});
@@ -725,7 +708,7 @@
             this.gridColumn29,
             this.gridColumn30});
             this.gridView3.GridControl = this.gridControl3;
-            this.gridView3.IndicatorWidth = 51;
+            this.gridView3.IndicatorWidth = 45;
             this.gridView3.Name = "gridView3";
             this.gridView3.OptionsBehavior.Editable = false;
             this.gridView3.OptionsCustomization.AllowFilter = false;
@@ -740,31 +723,31 @@
             // 
             this.gridColumn7.Caption = "票别";
             this.gridColumn7.FieldName = "BILLTYPE";
-            this.gridColumn7.MinWidth = 28;
+            this.gridColumn7.MinWidth = 25;
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.Visible = true;
             this.gridColumn7.VisibleIndex = 0;
-            this.gridColumn7.Width = 106;
+            this.gridColumn7.Width = 94;
             // 
             // gridColumn4
             // 
             this.gridColumn4.Caption = "发票类型代码";
             this.gridColumn4.FieldName = "PJLX";
-            this.gridColumn4.MinWidth = 28;
+            this.gridColumn4.MinWidth = 25;
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 1;
-            this.gridColumn4.Width = 208;
+            this.gridColumn4.Width = 185;
             // 
             // gridColumn_ph
             // 
             this.gridColumn_ph.Caption = "票号";
             this.gridColumn_ph.FieldName = "PJH";
-            this.gridColumn_ph.MinWidth = 28;
+            this.gridColumn_ph.MinWidth = 25;
             this.gridColumn_ph.Name = "gridColumn_ph";
             this.gridColumn_ph.Visible = true;
             this.gridColumn_ph.VisibleIndex = 2;
-            this.gridColumn_ph.Width = 180;
+            this.gridColumn_ph.Width = 160;
             // 
             // gridColumn_fee
             // 
@@ -774,59 +757,59 @@
             this.gridColumn_fee.DisplayFormat.FormatString = "N2";
             this.gridColumn_fee.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn_fee.FieldName = "FEE";
-            this.gridColumn_fee.MinWidth = 28;
+            this.gridColumn_fee.MinWidth = 25;
             this.gridColumn_fee.Name = "gridColumn_fee";
             this.gridColumn_fee.Visible = true;
             this.gridColumn_fee.VisibleIndex = 4;
-            this.gridColumn_fee.Width = 169;
+            this.gridColumn_fee.Width = 150;
             // 
             // gridColumn9
             // 
             this.gridColumn9.Caption = "开票人";
             this.gridColumn9.FieldName = "KPR";
-            this.gridColumn9.MinWidth = 28;
+            this.gridColumn9.MinWidth = 25;
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.Visible = true;
             this.gridColumn9.VisibleIndex = 5;
-            this.gridColumn9.Width = 106;
+            this.gridColumn9.Width = 94;
             // 
             // gridColumn16
             // 
             this.gridColumn16.Caption = "开票日期";
             this.gridColumn16.FieldName = "KPRQ";
-            this.gridColumn16.MinWidth = 28;
+            this.gridColumn16.MinWidth = 25;
             this.gridColumn16.Name = "gridColumn16";
             this.gridColumn16.Visible = true;
             this.gridColumn16.VisibleIndex = 6;
-            this.gridColumn16.Width = 165;
+            this.gridColumn16.Width = 147;
             // 
             // gridColumn20
             // 
             this.gridColumn20.Caption = "结算流水号";
             this.gridColumn20.FieldName = "FA001";
-            this.gridColumn20.MinWidth = 28;
+            this.gridColumn20.MinWidth = 25;
             this.gridColumn20.Name = "gridColumn20";
             this.gridColumn20.Visible = true;
             this.gridColumn20.VisibleIndex = 7;
-            this.gridColumn20.Width = 152;
+            this.gridColumn20.Width = 135;
             // 
             // gridColumn29
             // 
             this.gridColumn29.Caption = "操作员";
             this.gridColumn29.FieldName = "FA100";
-            this.gridColumn29.MinWidth = 28;
+            this.gridColumn29.MinWidth = 25;
             this.gridColumn29.Name = "gridColumn29";
-            this.gridColumn29.Width = 106;
+            this.gridColumn29.Width = 94;
             // 
             // gridColumn30
             // 
             this.gridColumn30.Caption = "交款人(单位)";
             this.gridColumn30.FieldName = "FA003";
-            this.gridColumn30.MinWidth = 169;
+            this.gridColumn30.MinWidth = 150;
             this.gridColumn30.Name = "gridColumn30";
             this.gridColumn30.Visible = true;
             this.gridColumn30.VisibleIndex = 3;
-            this.gridColumn30.Width = 258;
+            this.gridColumn30.Width = 229;
             // 
             // repositoryItemCheckEdit2
             // 
@@ -849,7 +832,7 @@
             this.gridControl4.MainView = this.gridView4;
             this.gridControl4.MenuManager = this.barManager1;
             this.gridControl4.Name = "gridControl4";
-            this.gridControl4.Size = new System.Drawing.Size(1540, 177);
+            this.gridControl4.Size = new System.Drawing.Size(1369, 177);
             this.gridControl4.TabIndex = 3;
             this.gridControl4.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView4});
@@ -881,27 +864,22 @@
             // 
             this.gridColumn6.Caption = "gridColumn10";
             this.gridColumn6.FieldName = "SA001";
-            this.gridColumn6.MinWidth = 22;
             this.gridColumn6.Name = "gridColumn6";
-            this.gridColumn6.Width = 84;
             // 
             // gridColumn8
             // 
             this.gridColumn8.Caption = "gridColumn11";
             this.gridColumn8.FieldName = "SA002";
-            this.gridColumn8.MinWidth = 22;
             this.gridColumn8.Name = "gridColumn8";
-            this.gridColumn8.Width = 84;
             // 
             // gridColumn21
             // 
             this.gridColumn21.Caption = "项目名称";
             this.gridColumn21.FieldName = "SA003";
-            this.gridColumn21.MinWidth = 22;
             this.gridColumn21.Name = "gridColumn21";
             this.gridColumn21.Visible = true;
             this.gridColumn21.VisibleIndex = 0;
-            this.gridColumn21.Width = 169;
+            this.gridColumn21.Width = 150;
             // 
             // gridColumn26
             // 
@@ -909,11 +887,10 @@
             this.gridColumn26.DisplayFormat.FormatString = "N2";
             this.gridColumn26.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn26.FieldName = "PRICE";
-            this.gridColumn26.MinWidth = 22;
             this.gridColumn26.Name = "gridColumn26";
             this.gridColumn26.Visible = true;
             this.gridColumn26.VisibleIndex = 1;
-            this.gridColumn26.Width = 112;
+            this.gridColumn26.Width = 100;
             // 
             // gridColumn27
             // 
@@ -921,11 +898,10 @@
             this.gridColumn27.DisplayFormat.FormatString = "N1";
             this.gridColumn27.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn27.FieldName = "NUMS";
-            this.gridColumn27.MinWidth = 22;
             this.gridColumn27.Name = "gridColumn27";
             this.gridColumn27.Visible = true;
             this.gridColumn27.VisibleIndex = 2;
-            this.gridColumn27.Width = 96;
+            this.gridColumn27.Width = 85;
             // 
             // gridColumn28
             // 
@@ -933,15 +909,24 @@
             this.gridColumn28.DisplayFormat.FormatString = "N2";
             this.gridColumn28.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn28.FieldName = "SA007";
-            this.gridColumn28.MinWidth = 22;
             this.gridColumn28.Name = "gridColumn28";
             this.gridColumn28.Visible = true;
             this.gridColumn28.VisibleIndex = 3;
-            this.gridColumn28.Width = 141;
+            this.gridColumn28.Width = 125;
+            // 
+            // gridColumn31
+            // 
+            this.gridColumn31.Caption = "工作站名";
+            this.gridColumn31.FieldName = "WS003";
+            this.gridColumn31.MinWidth = 25;
+            this.gridColumn31.Name = "gridColumn31";
+            this.gridColumn31.Visible = true;
+            this.gridColumn31.VisibleIndex = 1;
+            this.gridColumn31.Width = 116;
             // 
             // FinanceDaySearch
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tabPane1);
             this.Controls.Add(this.barDockControlLeft);
@@ -949,7 +934,7 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Name = "FinanceDaySearch";
-            this.Size = new System.Drawing.Size(1540, 742);
+            this.Size = new System.Drawing.Size(1369, 742);
             this.Load += new System.EventHandler(this.FinanceDaySearch_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
@@ -1056,5 +1041,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn30;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox1;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn31;
     }
 }

@@ -45,9 +45,11 @@ namespace White.Misc
         public static IntPtr prtservHandle { get; set; }   //打印服务窗口Handle
         public static int prtConnId { get; set; }          //打印会话连接Id 
 
-		public static bool FIN_READY { get; set; }		   // 博思开票状态
+		public static bool FIN_READY { get; set; }           // 博思开票状态
 
-		//public static n_prtserv prtserv { get; set; }      //打印服务对象
- 
-	}
+        //public static n_prtserv prtserv { get; set; }      //打印服务对象
+
+        public static string WORKSTATIONID { get; set; }     //工作站ID
+
+    }
 }

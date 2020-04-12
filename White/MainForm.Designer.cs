@@ -77,6 +77,7 @@
             this.barButtonItem40 = new DevExpress.XtraBars.BarButtonItem();
             this.skinRibbonGalleryBarItem1 = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
             this.barButtonItem41 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem21 = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -152,9 +153,10 @@
             this.barButtonItem39,
             this.barButtonItem40,
             this.skinRibbonGalleryBarItem1,
-            this.barButtonItem41});
+            this.barButtonItem41,
+            this.barButtonItem21});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 51;
+            this.ribbon.MaxItemId = 52;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -335,10 +337,11 @@
             // 
             // barButtonItem22
             // 
-            this.barButtonItem22.Caption = "发票统计";
+            this.barButtonItem22.Caption = "财政发票项目统计";
             this.barButtonItem22.Id = 23;
             this.barButtonItem22.ImageOptions.SvgImage = global::White.Properties.Resources.snapinsertheader;
             this.barButtonItem22.Name = "barButtonItem22";
+            this.barButtonItem22.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem22_ItemClick);
             // 
             // barButtonItem23
             // 
@@ -541,6 +544,14 @@
             this.barButtonItem41.Name = "barButtonItem41";
             this.barButtonItem41.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem41_ItemClick);
             // 
+            // barButtonItem21
+            // 
+            this.barButtonItem21.Caption = "工作站开票统计";
+            this.barButtonItem21.Id = 51;
+            this.barButtonItem21.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem21.ImageOptions.SvgImage")));
+            this.barButtonItem21.Name = "barButtonItem21";
+            this.barButtonItem21.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem21_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -605,6 +616,7 @@
             this.ribbonPageGroup5.ItemLinks.Add(this.barButtonItem17);
             this.ribbonPageGroup5.ItemLinks.Add(this.barButtonItem18);
             this.ribbonPageGroup5.ItemLinks.Add(this.barButtonItem22);
+            this.ribbonPageGroup5.ItemLinks.Add(this.barButtonItem21);
             this.ribbonPageGroup5.Name = "ribbonPageGroup5";
             // 
             // ribbonPage3
@@ -777,5 +789,6 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem40;
         private DevExpress.XtraBars.SkinRibbonGalleryBarItem skinRibbonGalleryBarItem1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem41;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem21;
     }
 }
