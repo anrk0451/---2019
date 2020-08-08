@@ -44,6 +44,10 @@ namespace White.Forms
             te_publickey.Text = Envior.TAX_PUBLIC_KEY;          //公钥
             te_privatekey.Text = Envior.TAX_PRIVATE_KEY;        //私钥
             te_url.Text = Envior.TAX_SERVER_URL;                //服务URL
+
+            te_cashier.Text = Envior.TAX_CASHIER;               //收款人
+            te_checker.Text = Envior.TAX_CHECKER;               //复核人
+
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
@@ -63,6 +67,9 @@ namespace White.Forms
             string s_public_key = te_publickey.Text;        //公钥
             string s_private_key = te_privatekey.Text;      //私钥
             string s_url = te_url.Text;                     //服务处理URL
+
+            string s_cashier = te_cashier.Text;             //收款人
+            string s_checker = te_checker.Text;             //复核人
 
             if (string.IsNullOrEmpty(s_url))
             {
@@ -91,8 +98,20 @@ namespace White.Forms
                 te_privatekey.ErrorText = "私钥不能为空!";
                 return;
             }
+            else if (string.IsNullOrEmpty(s_cashier))
+            {
+                te_cashier.ErrorImageOptions.Alignment = ErrorIconAlignment.MiddleRight;
+                te_cashier.ErrorText = "收款人不能为空!";
+                return;
+            }
+            else if (string.IsNullOrEmpty(s_checker))
+            {
+                te_checker.ErrorImageOptions.Alignment = ErrorIconAlignment.MiddleRight;
+                te_checker.ErrorText = "复核人不能为空!";
+                return;
+            }
 
-            if (AppAction.SaveTaxInfo(s_url,s_id,"",s_addr_tele,s_bank_account, s_invocie_type,s_public_key,s_private_key) > 0)
+            if (AppAction.SaveTaxInfo(s_url,s_id,"",s_addr_tele,s_bank_account, s_invocie_type,s_public_key,s_private_key, s_cashier, s_checker) > 0)
             {
                 XtraMessageBox.Show("保存成功!","提示",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 Envior.TAX_SERVER_URL = s_url;

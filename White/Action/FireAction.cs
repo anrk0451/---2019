@@ -445,7 +445,7 @@ namespace White.Action
 		/// <param name="nums"></param>
 		/// <param name="handler"></param>
 		/// <returns></returns>
-		public static int FireSales_Misc(string ac001, string itemId, int nums, string handler)
+		public static int FireSales_Misc(string ac001, string itemId, decimal nums, string handler)
 		{
 			//逝者编号
 			OracleParameter op_ac001 = new OracleParameter("ic_ac001", OracleDbType.Varchar2, 10);
@@ -458,7 +458,7 @@ namespace White.Action
 			op_itemId.Value = itemId;
 
 			//数量
-			OracleParameter op_nums = new OracleParameter("in_nums", OracleDbType.Int16);
+			OracleParameter op_nums = new OracleParameter("in_nums", OracleDbType.Decimal);
 			op_nums.Direction = ParameterDirection.Input;
 			op_nums.Value = nums;
 

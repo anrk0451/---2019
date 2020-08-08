@@ -378,7 +378,7 @@ namespace White.BusinessObject
 			if (e.Button == MouseButtons.Left && e.Clicks == 1)
 			{
 				//判断光标是否在行范围内  
-				if (hInfo.InRow && hInfo.Column.FieldName.ToUpper() == "FA190" && gridView1.GetRowCellValue(hInfo.RowHandle,"FA190").ToString() != "00" )
+				if (hInfo.InRow && (hInfo.Column != null) && hInfo.Column.FieldName.ToUpper() == "FA190" && gridView1.GetRowCellValue(hInfo.RowHandle,"FA190").ToString() != "00" )
 				{
 					string s_fa001 = gridView1.GetRowCellValue(hInfo.RowHandle, "FA001").ToString();
 					Frm_InvoiceInfo frm_1 = new Frm_InvoiceInfo();
@@ -767,6 +767,7 @@ namespace White.BusinessObject
 			if (frm_taxClient.ShowDialog() == DialogResult.OK)
 			{
 				TaxClientInfo clientInfo = frm_taxClient.swapdata["taxclientinfo"] as TaxClientInfo;
+				 
 				if (TaxInvoice.GetNextInvoiceNo(fa001) > 0)
 				{
 					if (XtraMessageBox.Show("下一张税票代码:" + Envior.NEXT_BILL_CODE + "\r\n" + "票号:" + Envior.NEXT_BILL_NUM + ",是否继续?", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -944,6 +945,15 @@ namespace White.BusinessObject
 				s_billType = gridView3.GetRowCellValue(rowHandle, "BILLTYPE").ToString();
 				s_fa001 = gridView3.GetRowCellValue(rowHandle, "FA001").ToString();
 				string s_fa002 = SqlAssist.ExecuteScalar("select fa002 from fa01 where fa001='" + s_fa001 + "'").ToString();
+
+				//检查与开票所在工作站是否一致!!!
+				if (MiscAction.CheckWorkStationCompare(s_fa001, Envior.WORKSTATIONID, s_billType) == "0")
+				{
+					XtraMessageBox.Show("此笔收费发票不是在当前工作站开具,不能继续!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+					return;
+				}
+
+
 				//if(s_fa002 == "2")
 				//{
 				//	XtraMessageBox.Show("此收费记录不能退费!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);

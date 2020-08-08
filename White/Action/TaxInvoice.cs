@@ -54,8 +54,9 @@ namespace White.Action
 			//将业务数据转换为Json字符串
 			string s_json = Tools.ConvertObjectToJson(bdata);
  
-			//string s_req_sid = Tools.GetEntityPK("TAXREQ"); //报文请求ID
-			string s_req_sid = fa001 + "0";					  //报文请求ID
+			string s_req_sid = Tools.GetEntityPK("TAXREQ"); //报文请求ID
+		    //string s_req_sid = fa001 + "0";				//报文请求ID 
+
 			string s_retstr = WrapData("HQDQFPDMHM", s_req_sid, s_json);
 
 			//分析返回结果
@@ -96,12 +97,12 @@ namespace White.Action
 			Newtonsoft.Json.Linq.JObject js = obj as Newtonsoft.Json.Linq.JObject;
 			if (js["code"].ToString() == "10302")   //在线
 			{
-				XtraMessageBox.Show(js["msg"].ToString(),"在线");
+				//XtraMessageBox.Show(js["msg"].ToString(),"在线");
 				return true;
 			}
 			else
 			{
-				XtraMessageBox.Show(js["msg"].ToString(),"离线");
+				//XtraMessageBox.Show(js["msg"].ToString(),"离线");
 				return false;
 			}
 
@@ -184,6 +185,9 @@ namespace White.Action
 			//判断是正数负数发票
 			decimal dec_sum = Convert.ToDecimal(SqlAssist.ExecuteScalar("select fa004 from fa01 where fa001='" + fa001 + "'"));
 
+			//退费红冲 和 正数发票分开 
+			if (dec_sum < 0) return InvoiceRefund(fa001, taxClient);
+
 			bdata.Add("fplxdm", Envior.TAX_INVOICE_TYPE);             //发票类型代码
 			bdata.Add("kplx", dec_sum > 0 ? "0":"1");				  //开票类型 0-正数发票 1-负数
 			bdata.Add("tspz", "00");								  //特殊票种 00-不是 01-农产品销售 02-农产品收购
@@ -257,8 +261,8 @@ namespace White.Action
 			bdata.Add("hjse", dec_sum_tax.ToString());       //合计税额
 			bdata.Add("jshj", dec_sum_sum.ToString());       //价税合计
 			bdata.Add("bz", "");						     //备注
-			bdata.Add("skr", Envior.cur_userName);           //收款人
-			bdata.Add("fhr", Envior.cur_userName);			 //复核人
+			bdata.Add("skr", taxClient.infocashier);         //收款人
+			bdata.Add("fhr", taxClient.infochecker);		 //复核人
 			bdata.Add("kpr", Envior.cur_userName);           //开票人
 			bdata.Add("tzdbh", "");                          //通知单编号 专票红字必填
 
@@ -294,8 +298,9 @@ namespace White.Action
 
 			//XtraMessageBox.Show(s_json);
 
-			//string s_req_sid = Tools.GetEntityPK("TAXREQ"); //报文请求ID
-			string s_req_sid = fa001 + "1";
+			string s_req_sid = Tools.GetEntityPK("TAXREQ"); //报文请求ID
+			//string s_req_sid = fa001 + "1";
+
 			string s_retstr = WrapData("FPKJ", s_req_sid, s_json);
 
 			//分析返回结果
@@ -351,8 +356,6 @@ namespace White.Action
 			}
 		}
 
-
-
 		/// <summary>
 		/// 负数发票开具
 		/// </summary>
@@ -361,6 +364,32 @@ namespace White.Action
 		{
 			//组装业务数据
 			Dictionary<string, object> bdata = new Dictionary<string, object>();
+
+			int i_order = 0;
+			List<C_detail> detaildata = new List<C_detail>();
+
+			decimal dec_rate = new decimal();
+			decimal dec_price = new decimal();         //含税价格
+			decimal dec_price_notax = new decimal();   //不含税价格
+			decimal dec_je_notax = new decimal();      //不含税金额
+			decimal dec_tax = new decimal();           //税额
+
+			decimal dec_sum_notax = new decimal(0);    //合计金额(不含税)
+			decimal dec_sum_tax = new decimal(0);      //合计税额
+			decimal dec_sum_sum = new decimal(0);      //价税合计
+			string s_ggxh = string.Empty;              //规格型号
+			string s_jldw = string.Empty;              //计量单位
+			string s_spmc = string.Empty;              //商品名称
+			string s_spbm = string.Empty;              //商品编码
+			string s_yfpdm = string.Empty;             //原发票代码
+			string s_yfphm = string.Empty;             //原发票号码
+
+			//发票明细数量
+			int itemCount = Convert.ToInt32(SqlAssist.ExecuteScalar("select count(*) from v_sa01 where sa010 ='" + fa001 + "' and sa020 = 'T' "));
+
+			//退费总金额
+			decimal dec_sum = Convert.ToDecimal(SqlAssist.ExecuteScalar("select fa004 from fa01 where fa001='" + fa001 + "'"));
+
 			bdata.Add("fplxdm", Envior.TAX_INVOICE_TYPE);             //发票类型代码
 			bdata.Add("kplx", "1");                                   //开票类型 0-正数发票 1-负数
 			bdata.Add("tspz", "00");                                  //特殊票种 00-不是 01-农产品销售 02-农产品收购
@@ -374,67 +403,125 @@ namespace White.Action
 			OracleParameter op_fa001 = new OracleParameter("fa001", OracleDbType.Varchar2, 10);
 			op_fa001.Direction = ParameterDirection.Input;
 			op_fa001.Value = fa001;
-			OracleDataReader reader_sa01 = SqlAssist.ExecuteReader("select * from sa01 where sa010 = :fa001 and status = '1'", new OracleParameter[] { op_fa001 });
+			OracleDataReader reader_sa01 = SqlAssist.ExecuteReader("select * from sa01 where sa010 = :fa001 and status = '1' ", new OracleParameter[] { op_fa001 });
 
-			int i_order = 0;
-			List<C_detail> detaildata = new List<C_detail>();
-			decimal dec_rate = new decimal();
-			decimal dec_price = new decimal();         //含税价格
-			decimal dec_price_notax = new decimal();   //不含税价格
-			decimal dec_je_notax = new decimal();      //不含税金额
-			decimal dec_tax = new decimal();           //税额
-
-			decimal dec_sum_notax = new decimal(0);    //合计金额(不含税)
-			decimal dec_sum_tax = new decimal(0);      //合计税额
-			decimal dec_sum_sum = new decimal(0);      //加税合计
-
-
-			while (reader_sa01.Read())
+			if (itemCount > AppInfo.TAXITEMCOUNT)      //超出清单阈值
 			{
-				if (reader_sa01["SA020"].ToString() != "T") continue;   //不是税务项目 忽略
-				i_order++;
+				while (reader_sa01.Read())
+				{
+					if (reader_sa01["SA020"].ToString() != "T") continue;                    //不是税务项目 忽略
+					i_order++;
+					dec_rate = Convert.ToDecimal(reader_sa01["SA025"]);                      //获取税率
+					dec_price = Convert.ToDecimal(reader_sa01["PRICE"]);                     //含税价格
+					dec_price_notax = Math.Round(dec_price / (1 + dec_rate), 2);             //不含税价格
+					dec_je_notax += Math.Round((dec_price / (1 + dec_rate)) * Convert.ToDecimal(reader_sa01["NUMS"].ToString()), 2);        //不含税金额
+					dec_tax += Math.Round((dec_price / (1 + dec_rate)) * dec_rate * Convert.ToDecimal(reader_sa01["NUMS"].ToString()), 2);  //税额
+					 
+					//if (i_order == 1) s_ggxh = MiscAction.GetItemGGXH(reader_sa01["SA004"].ToString());                                  //规格型号	
+					//if (i_order == 1) s_jldw = MiscAction.GetItemDW(reader_sa01["SA004"].ToString());                                    //计量单位	
+					if (i_order == 1) s_spmc = reader_sa01["SA003"].ToString();                                                            //商品名称	
+					if (i_order == 1) s_spbm = MiscAction.GetItemInvoiceCode("", reader_sa01["SA004"].ToString());                         //商品编码
+				}
+				reader_sa01.Dispose();
 
 				C_detail c_detail = new C_detail();
-				dec_rate = Convert.ToDecimal(reader_sa01["SA025"]);                      //获取税率
-				dec_price = Convert.ToDecimal(reader_sa01["PRICE"]);                     //含税价格
-				dec_price_notax = Math.Round(dec_price / (1 + dec_rate), 2);             //不含税价格
-				dec_je_notax = dec_price_notax * Convert.ToDecimal(reader_sa01["NUMS"].ToString());        //不含税金额
-				dec_tax = dec_price_notax * dec_rate * Convert.ToDecimal(reader_sa01["NUMS"].ToString());  //税额
-
-				c_detail.xh = i_order.ToString();                                        //序号 
+				c_detail.xh = "1";                                                       //序号 
 				c_detail.fphxz = "0";                                                    //发票行性质	0 正常行1 折扣行2 被折扣行
-				c_detail.ggxh = "";                                                      //规格型号
-				c_detail.dw = "";                                                        //单位
-				c_detail.spmc = reader_sa01["SA003"].ToString();                         //商品名称
-				c_detail.spsl = reader_sa01["NUMS"].ToString();                          //数量
-				c_detail.dj = dec_price_notax.ToString();                                //单价(不含税)
+				c_detail.ggxh = s_ggxh;                                                  //规格型号
+
+				c_detail.dw = s_jldw;                                                    //计量单位
+				c_detail.spmc = "详见对应正数发票及清单";                                //商品名称 s_spmc;
+				c_detail.spsl = "";                                                      //数量
+				c_detail.dj = "";                                                        //单价(不含税)
 				c_detail.je = dec_je_notax.ToString();                                   //金额(不含税)
-				c_detail.sl = dec_rate.ToString();                                       //税率
+				c_detail.sl = "";                                                        //税率
 				c_detail.se = dec_tax.ToString();                                        //税额						
 				c_detail.hsbz = "0";                                                     //含税标志 0 不含税1 含税
-				c_detail.spbm = MiscAction.GetItemInvoiceCode("", reader_sa01["SA004"].ToString());    //商品编码(税务发票编码)
+				c_detail.spbm = ""; //s_spbm;											 //商品编码(税务发票编码)
 				c_detail.zxbm = "";                                                      //自行编码	
 				c_detail.yhzcbs = "0";                                                   //优惠政策标识   
 
-				c_detail.slbs = dec_rate == 0 ? "1" : "";                                  //税率标识： 空，是正常税率  1-免税 2-不征税 3-普通零税率
+				//c_detail.slbs = dec_rate == 0 ? "1" : "";                              //税率标识： 空，是正常税率  1-免税 2-不征税 3-普通零税率
+				c_detail.slbs = "";
 
 				c_detail.zzstsgl = "";                                                   //增值税特殊管理
 				detaildata.Add(c_detail);
 
-				dec_sum_notax += dec_je_notax;              //合计金额(不含税)
-				dec_sum_tax += dec_tax;                     //合计税额
-				dec_sum_sum += dec_je_notax + dec_tax;      //价税合计
+				dec_sum_notax = dec_je_notax;              //合计金额(不含税)
+				dec_sum_tax = dec_tax;                     //合计税额
+				dec_sum_sum = dec_je_notax + dec_tax;      //价税合计
 
+				bdata.Add("mx", detaildata);
+
+				bdata.Add("zhsl", "99.01");                      //综合税率 固定传 99.01
+				bdata.Add("hjje", dec_sum_notax.ToString());     //合计金额(不含税)
+				bdata.Add("hjse", dec_sum_tax.ToString());       //合计税额
+				bdata.Add("jshj", dec_sum_sum.ToString());       //价税合计
+				bdata.Add("bz", "");                             //备注
+				bdata.Add("skr", taxClient.infocashier);         //收款人
+				bdata.Add("fhr", taxClient.infochecker);         //复核人
+				bdata.Add("kpr", Envior.cur_userName);           //开票人
+				bdata.Add("tzdbh", "");                          //通知单编号 专票红字必填
 			}
+			else
+			{
+				while (reader_sa01.Read())
+				{
+					if (reader_sa01["SA020"].ToString() != "T") continue;   //不是税务项目 忽略
+					i_order++;
 
-			reader_sa01.Dispose();
+					C_detail c_detail = new C_detail();
+					dec_rate = Convert.ToDecimal(reader_sa01["SA025"]);                      //获取税率
+					dec_price = Convert.ToDecimal(reader_sa01["PRICE"]);                     //含税价格
+					dec_price_notax = Math.Round(dec_price / (1 + dec_rate), 2);             //不含税价格
+					dec_je_notax = Math.Round((dec_price / (1 + dec_rate)) * Convert.ToDecimal(reader_sa01["NUMS"].ToString()), 2);        //不含税金额
+					dec_tax = Math.Round((dec_price / (1 + dec_rate)) * dec_rate * Convert.ToDecimal(reader_sa01["NUMS"].ToString()), 2);  //税额
 
+					c_detail.xh = i_order.ToString();                                        //序号 
+					c_detail.fphxz = "0";                                                    //发票行性质	0 正常行1 折扣行2 被折扣行
+					c_detail.ggxh = "";														 //规格型号
+					c_detail.dw = "";														 //计量单位
+					c_detail.spmc = reader_sa01["SA003"].ToString();                         //商品名称
+					c_detail.spsl = reader_sa01["NUMS"].ToString();                          //数量 
+	
+					c_detail.dj = dec_price_notax.ToString();                                //单价(不含税) 
+ 
+					c_detail.je = dec_je_notax.ToString();                                   //金额(不含税)
+					c_detail.sl = dec_rate.ToString();                                       //税率
+ 
+					c_detail.se = dec_tax.ToString();                                        //税额						
+					c_detail.hsbz = "0";                                                     //含税标志 0 不含税1 含税
+					c_detail.spbm = MiscAction.GetItemInvoiceCode("", reader_sa01["SA004"].ToString());    //商品编码(税务发票编码)
+			 
+					c_detail.zxbm = "";                                                      //自行编码	
+					c_detail.yhzcbs = "0";                                                   //优惠政策标识   
+
+					c_detail.slbs = dec_rate == 0 ? "1" : "";                                //税率标识： 空，是正常税率  1-免税 2-不征税 3-普通零税率
+  
+					c_detail.zzstsgl = "";                                                   //增值税特殊管理
+					detaildata.Add(c_detail);
+
+					dec_sum_notax += dec_je_notax;              //合计金额(不含税)
+					dec_sum_tax += dec_tax;                     //合计税额
+					dec_sum_sum += dec_je_notax + dec_tax;      //价税合计
+				}
+
+				bdata.Add("mx", detaildata);
+				//bdata.Add("zhsl", "99.01");                      //综合税率 固定传 99.01
+
+				bdata.Add("hjje", dec_sum_notax.ToString());     //合计金额(不含税)
+				bdata.Add("hjse", dec_sum_tax.ToString());       //合计税额
+				bdata.Add("jshj", dec_sum_sum.ToString());       //价税合计
+				bdata.Add("bz", "");                             //备注
+				bdata.Add("skr", taxClient.infocashier);         //收款人
+				bdata.Add("fhr", taxClient.infochecker);         //复核人
+				bdata.Add("kpr", Envior.cur_userName);           //开票人
+				bdata.Add("tzdbh", "");                          //通知单编号 专票红字必填
+			}
 
 			///检索原发票代码、号码
 			string s_log_sql = String.Format(@"select * from tax_log where settleId = 
-												 (select rf300 from refund where rf001 = '" + fa001 + "')",fa001);
-			string s_yfpdm = string.Empty;
-			string s_yfphm = string.Empty;
+												 (select rf300 from refund where rf001 = '" + fa001 + "')");
 			using (OracleDataReader reader_log = SqlAssist.ExecuteReader(s_log_sql))
 			{
 				if (reader_log.Read())
@@ -442,17 +529,13 @@ namespace White.Action
 					s_yfpdm = reader_log["INVOICECODE"].ToString();   //原发票代码
 					s_yfphm = reader_log["INVOICENUM"].ToString();    //原发票号码
 				}
+				else
+				{
+					XtraMessageBox.Show("读取原发票信息错误!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+					return -1;
+				}
 			}
 
-			bdata.Add("mx", detaildata);
-			bdata.Add("hjje", dec_sum_notax.ToString());     //合计金额(不含税)
-			bdata.Add("hjse", dec_sum_tax.ToString());       //合计税额
-			bdata.Add("jshj", dec_sum_sum.ToString());       //价税合计
-			bdata.Add("bz", "");                             //备注
-			bdata.Add("skr", Envior.cur_userName);           //收款人
-			bdata.Add("fhr", Envior.cur_userName);           //复核人
-			bdata.Add("kpr", Envior.cur_userName);           //开票人
-			bdata.Add("tzdbh", "");                          //通知单编号 专票红字必填
 			bdata.Add("yfphm", s_yfphm);                     //原发票号码 负数发票必填
 			bdata.Add("yfpdm", s_yfpdm);                     //原发票代码 负数发票必填
 			bdata.Add("gmf_dzyx", "");                       //购买方电子邮箱 推送使用，电子发票，购买方电子邮箱和手机号码微信id三个必填一
@@ -462,14 +545,24 @@ namespace White.Action
 			//将业务数据转换为Json字符串
 			string s_json = Tools.ConvertObjectToJson(bdata);
 
-			XtraMessageBox.Show(s_json);
+			//加入调试信息
+			LogUtils.Debug("业务json:" + s_json);
+			 
+			string s_req_sid = string.Empty;
+			string s_retstr = string.Empty;
 
-			string s_req_sid = Tools.GetEntityPK("TAXREQ"); //报文请求ID
-			string s_retstr = WrapData("FPKJ", s_req_sid, s_json);
+			s_req_sid = Tools.GetEntityPK("TAXREQ"); //报文请求ID	
+		    //s_req_sid = fa001 + "1";
+
+			LogUtils.Debug("报文请求Id:" + s_req_sid);
+
+
+			s_retstr = WrapData("FPKJ", s_req_sid, s_json);
 
 			//分析返回结果
 			Object obj = JsonConvert.DeserializeObject(s_retstr);
 			Newtonsoft.Json.Linq.JObject js = obj as Newtonsoft.Json.Linq.JObject;
+
 			if (js["code"].ToString() == "00000")   //成功
 			{
 				string data = js["data"].ToString();
@@ -488,7 +581,7 @@ namespace White.Action
 				decimal d_jshj = Convert.ToDecimal(js2["jshj"].ToString());  //价税合计
 
 				//记录发票日志
-				int result = InvoiceLog(fa001, Envior.TAX_INVOICE_TYPE, Envior.cur_userName, Envior.cur_userName, Envior.cur_userName,
+				int result = InvoiceLog(fa001, Envior.TAX_INVOICE_TYPE, Envior.cur_userId, Envior.cur_userName, Envior.cur_userName,
 					taxClient.InfoClientName, taxClient.InfoClientTaxCode, taxClient.infoclientbankaccount, taxClient.infoclientaddressphone,
 					s_fpdm, s_fphm, s_mw, s_jym, d_hjje, d_jshj);
 
@@ -518,7 +611,9 @@ namespace White.Action
 				XtraMessageBox.Show("发票开具失败!\r\n" + js["msg"].ToString(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return -1;
 			}
+
 		}
+
 
 
 		/// <summary>
@@ -604,8 +699,9 @@ namespace White.Action
 
 					//2.将业务数据转换为Json字符串
 					string s_json = Tools.ConvertObjectToJson(bdata);
-					//string s_req_sid = Tools.GetEntityPK("TAXREQ"); //报文请求ID
-					string s_req_sid = fa001 + "2";
+					string s_req_sid = Tools.GetEntityPK("TAXREQ"); //报文请求ID
+					//string s_req_sid = fa001 + "2";
+					
 					string s_retstr = WrapData("FPZF", s_req_sid, s_json);
 
 					//3.分析返回结果

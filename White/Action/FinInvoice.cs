@@ -252,7 +252,9 @@ namespace White.Action
             string vContent = "<&票据><&票据头>" + s_head + "	" + "</&票据头>" + "<&收费项目>" + sb_detail.ToString() + "</&收费项目></&票据>";
 
 
-            //XtraMessageBox.Show(vContent,"debug 2");
+            XtraMessageBox.Show(vContent,"debug 2");
+            LogUtils.Debug(vContent);
+            
             string retstr = Invoice(vContent, 1,Envior.FIN_INVOICE_TYPE, s_memo);
             if(retstr.IndexOf("成功") >= 0)
             {

@@ -34,9 +34,7 @@ namespace White.BusinessObject
 
         DataTable dt_taxInvoice = new DataTable();
         OracleDataAdapter taxAdapter = new OracleDataAdapter("select * from v_financeDay_invoices where billType = 'T' and fa100 = :fa100 and (to_char(fa200,'yyyy-mm-dd') between :begin and :end) ", SqlAssist.conn);
-
-
-
+ 
         OracleParameter op_begin = new OracleParameter("begin", OracleDbType.Varchar2, 20);
         OracleParameter op_end = new OracleParameter("end", OracleDbType.Varchar2, 20);
         OracleParameter op_fa100 = new OracleParameter("fa100", OracleDbType.Varchar2, 10);
@@ -45,6 +43,8 @@ namespace White.BusinessObject
         string s_begin = string.Empty;
         string s_end = string.Empty;
         string s_fa100 = string.Empty;
+
+        bool slock = false;
 
         public Report_CasherStat()
         {
@@ -118,6 +118,7 @@ namespace White.BusinessObject
         {
             if(MiscAction.CasherStat(s_begin,s_end,s_fa100) > 0)
             {
+                slock = true;
                 this.Cursor = Cursors.WaitCursor;
 
                 dt_casherStat.Rows.Clear();
@@ -138,6 +139,7 @@ namespace White.BusinessObject
                     groupControl1.Text = "<color=255,0,0>统计日期 " + s_begin + "至" + s_end + "</color>";
 
                 this.Cursor = Cursors.Arrow;
+                slock = false;
             }
         }
 
@@ -149,7 +151,7 @@ namespace White.BusinessObject
         private void gridView_center_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             int rowHandle = e.FocusedRowHandle;
-            if(rowHandle >= 0)
+            if(rowHandle >= 0 && !slock)
             {
                 string s_fa100 = gridView_center.GetRowCellValue(rowHandle, "UC001").ToString();
                 op_fa100.Value = s_fa100;

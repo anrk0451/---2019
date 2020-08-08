@@ -185,7 +185,10 @@ namespace White
 						Envior.TAX_PUBLIC_KEY = reader["SP005"].ToString();
 					else if (reader["SP002"].ToString() == "tax_privatekey")           //税票-私钥
 						Envior.TAX_PRIVATE_KEY = reader["SP005"].ToString();
-
+					else if (reader["SP002"].ToString() == "tax_cashier")              //税票-收款人
+						Envior.TAX_CASHIER = reader["SP005"].ToString();
+					else if (reader["SP002"].ToString() == "tax_checker")              //税票-复核人
+						Envior.TAX_CHECKER = reader["SP005"].ToString();
 				}
 			}
 			reader.Dispose();

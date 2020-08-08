@@ -241,7 +241,7 @@ namespace White.Forms
 			List<string> itemType_list = new List<string>();
 			List<string> itemInvoiceType_list = new List<string>();
 			List<decimal> price_list = new List<decimal>();
-			List<int> nums_list = new List<int>();
+			List<decimal> nums_list = new List<decimal>();
 
 			if (!gridView1.PostEditor()) return;
 			if (!gridView1.UpdateCurrentRow()) return;
@@ -279,7 +279,7 @@ namespace White.Forms
 					else
 						price_list.Add(decimal.Parse(gridView1.GetRowCellValue(selectedRowHandle, "PRICE").ToString()));
 
-					nums_list.Add(int.Parse(gridView1.GetRowCellValue(selectedRowHandle, "NUMS").ToString()));
+					nums_list.Add(decimal.Parse(gridView1.GetRowCellValue(selectedRowHandle, "NUMS").ToString()));
 				}
 			}
 
@@ -303,7 +303,7 @@ namespace White.Forms
 					itemId_list.Add(gridView2.GetRowCellValue(selectedRowHandle, "ITEM_ID").ToString());
 					itemType_list.Add(gridView2.GetRowCellValue(selectedRowHandle, "ITEM_TYPE").ToString());
 					price_list.Add(decimal.Parse(gridView2.GetRowCellValue(selectedRowHandle, "PRICE").ToString()));
-					nums_list.Add(int.Parse(gridView2.GetRowCellValue(selectedRowHandle, "NUMS").ToString()));
+					nums_list.Add(decimal.Parse(gridView2.GetRowCellValue(selectedRowHandle, "NUMS").ToString()));
 				}
 			}
 
@@ -327,7 +327,7 @@ namespace White.Forms
 					itemId_list.Add(gridView3.GetRowCellValue(selectedRowHandle, "ITEM_ID").ToString());
 					itemType_list.Add(gridView3.GetRowCellValue(selectedRowHandle, "ITEM_TYPE").ToString());
 					price_list.Add(decimal.Parse(gridView3.GetRowCellValue(selectedRowHandle, "PRICE").ToString()));
-					nums_list.Add(int.Parse(gridView3.GetRowCellValue(selectedRowHandle, "NUMS").ToString()));
+					nums_list.Add(decimal.Parse(gridView3.GetRowCellValue(selectedRowHandle, "NUMS").ToString()));
 				}
 			}
 
@@ -351,7 +351,7 @@ namespace White.Forms
 					itemId_list.Add(gridView4.GetRowCellValue(selectedRowHandle, "ITEM_ID").ToString());
 					itemType_list.Add(gridView4.GetRowCellValue(selectedRowHandle, "ITEM_TYPE").ToString());
 					price_list.Add(decimal.Parse(gridView4.GetRowCellValue(selectedRowHandle, "PRICE").ToString()));
-					nums_list.Add(int.Parse(gridView4.GetRowCellValue(selectedRowHandle, "NUMS").ToString()));
+					nums_list.Add(decimal.Parse(gridView4.GetRowCellValue(selectedRowHandle, "NUMS").ToString()));
 				}
 			}
 			if (itemId_list.Count == 0)

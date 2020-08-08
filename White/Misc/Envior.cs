@@ -35,7 +35,10 @@ namespace White.Misc
         public static string TAX_PUBLIC_KEY { get; set; }     //公钥
         public static string TAX_PRIVATE_KEY { get; set; }    //私钥
         public static string TAX_SERVER_URL { get; set; }     //税务发票服务URL  
-         
+
+        public static string TAX_CASHIER { get; set; }        //税务发票-收款人
+        public static string TAX_CHECKER { get; set; }        //税务发票-复核人
+
 
         public static string[] rolearry { get; set; }      //所属角色组
         public static char loginMode { get; set; }         //登陆模式

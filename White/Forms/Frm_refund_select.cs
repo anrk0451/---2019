@@ -154,7 +154,7 @@ namespace White.Forms
                         {
                             for(int i = 0 ; i < itemIdList.Count;i++ )
                             {
-                                if (MiscAction.GetItemInvoiceType(itemIdList[i]) != "F") continue;
+                                //if (MiscAction.GetItemInvoiceType(itemIdList[i]) != "F") continue;
                                 s_invcode = MiscAction.GetItemInvoiceCode(itemTypeList[i], itemIdList[i]);
                                 dec_fee = Math.Abs(priceList[i] * numsList[i]);
                                 sb_content.Append(s_invcode + "	" + dec_fee.ToString() + "	");

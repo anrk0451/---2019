@@ -250,7 +250,7 @@ namespace White.Forms
 				return false;
 			}
 			//与逝者关系
-			if (string.IsNullOrWhiteSpace(lookUp_ac052.EditValue.ToString()))
+			if (string.IsNullOrWhiteSpace(lookUp_ac052.Text))
 			{
 				lookUp_ac052.ErrorImageOptions.Alignment = ErrorIconAlignment.MiddleRight;
 				lookUp_ac052.ErrorText = "与逝者关系必须输入!";
@@ -265,7 +265,7 @@ namespace White.Forms
 				txtEdit_ac051.Focus();
 				return false;
 			}
-			if (string.IsNullOrWhiteSpace(lookup_gtype.EditValue.ToString()))
+			if (string.IsNullOrWhiteSpace(lookup_gtype.Text))
 			{
 				lookup_gtype.ErrorImageOptions.Alignment = ErrorIconAlignment.MiddleRight;
 				lookup_gtype.ErrorText = "逝者类型必须输入!";

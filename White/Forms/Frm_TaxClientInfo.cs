@@ -41,8 +41,18 @@ namespace White.Forms
 
         private void Frm_TaxClientInfo_Load(object sender, EventArgs e)
         {
-            txtedit_infocashier.Text = Envior.cur_userName;  //收款人
-            txtedit_infochecker.Text = Envior.cur_userName;  //复核人
+            
+            if (string.IsNullOrEmpty(Envior.TAX_CASHIER))
+                txtedit_infocashier.Text = Envior.cur_userName;  //收款人
+            else
+                txtedit_infocashier.Text = Envior.TAX_CASHIER;
+
+
+            if (string.IsNullOrEmpty(Envior.TAX_CHECKER))
+                txtedit_infochecker.Text = Envior.cur_userName;  //复核人
+            else
+                txtedit_infochecker.Text = Envior.TAX_CHECKER;
+
             txtedit_clientName.Focus();
         }
 
@@ -60,10 +70,9 @@ namespace White.Forms
             taxClientInfo.infoclientaddressphone = txtedit_infoclientaddressphone.Text;//客户地址及电话
             taxClientInfo.infocashier = txtedit_infocashier.Text;                      //收款人
             taxClientInfo.infochecker = txtedit_infochecker.Text;                      //复核人
-
+ 
             this.swapdata["taxclientinfo"] = taxClientInfo;
-             
-
+ 
             DialogResult = DialogResult.OK;
             this.Close();
         }

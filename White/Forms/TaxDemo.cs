@@ -492,5 +492,31 @@ namespace White.Forms
 		{
 			TaxInvoice.ClientIsOnline();
 		}
+
+		private void simpleButton18_Click(object sender, EventArgs e)
+		{
+
+			string s_retstr = TaxInvoice.WrapData("FPKJ", memoEdit2.Text, memoEdit1.Text);
+			//分析返回结果
+			Object obj = JsonConvert.DeserializeObject(s_retstr);
+			Newtonsoft.Json.Linq.JObject js = obj as Newtonsoft.Json.Linq.JObject;
+
+			if (js["code"].ToString() == "00000")   //成功
+			{
+				string data = js["data"].ToString();
+				//解密 返回数据
+				string resultText = Tools.AesDecrypt(data, Envior.TAX_PRIVATE_KEY);
+
+				//解析真正的业务数据
+				Object obj2 = JsonConvert.DeserializeObject(resultText);
+				Newtonsoft.Json.Linq.JObject js2 = obj2 as Newtonsoft.Json.Linq.JObject;
+				XtraMessageBox.Show("发票开具成功!");
+
+			}
+			else
+			{
+				XtraMessageBox.Show("发票开具失败!\r\n" + js["msg"].ToString(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
 	}
 }

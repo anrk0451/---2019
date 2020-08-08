@@ -416,7 +416,7 @@ namespace White.BusinessObject
 				List<string> itemId_list = frm_misc.swapdata["itemIdList"] as List<string>;
 				List<string> itemType_list = frm_misc.swapdata["itemTypeList"] as List<string>;
 				List<decimal> price_list = frm_misc.swapdata["priceList"] as List<decimal>;
-				List<int> nums_list = frm_misc.swapdata["numsList"] as List<int>;
+				List<decimal> nums_list = frm_misc.swapdata["numsList"] as List<decimal>;
 				int re = 0;
 
 				for (int i = 0; i < itemId_list.Count; i++)
@@ -766,6 +766,31 @@ namespace White.BusinessObject
 				this.RefreshSalesData();
 			}
 
+		}
+
+		private void gridView1_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
+		{
+			if (e.Action == CollectionChangeAction.Add)
+			{
+				int row = gridView1.FocusedRowHandle;
+				if (gridView1.GetRowCellValue(row, "SA008").ToString() == "1")
+				{
+					MessageBox.Show("已结算数据不能修改!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					gridView1.UnselectRow(row);
+				}
+			}
+			else if (e.Action == CollectionChangeAction.Refresh && gridView1.SelectedRowsCount > 0)
+			{
+				gridView1.BeginUpdate();
+				for (int i = 0; i < gridView1.RowCount; i++)
+				{
+					if (gridView1.GetRowCellValue(i, "SA008").ToString() == "1")
+					{
+						gridView1.UnselectRow(i);
+					}
+				}
+				gridView1.EndUpdate();
+			}
 		}
 	}
 }

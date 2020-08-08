@@ -170,6 +170,12 @@
     <Compile Include="BusinessObject\Report_workstation.Designer.cs">
       <DependentUpon>Report_workstation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Frm_refund_select2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Frm_refund_select2.Designer.cs">
+      <DependentUpon>Frm_refund_select2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Frm_report_regdebt.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -510,12 +516,6 @@
     <Compile Include="Forms\Frm_refund_select.Designer.cs">
       <DependentUpon>Frm_refund_select.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Frm_refund_select2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Frm_refund_select2.Designer.cs">
-      <DependentUpon>Frm_refund_select2.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\Frm_RegEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -682,6 +682,9 @@
     <EmbeddedResource Include="BusinessObject\Report_workstation.resx">
       <DependentUpon>Report_workstation.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Frm_refund_select2.resx">
+      <DependentUpon>Frm_refund_select2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Frm_report_regdebt.resx">
       <DependentUpon>Frm_report_regdebt.cs</DependentUpon>
     </EmbeddedResource>
@@ -837,9 +840,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Frm_refund_select.resx">
       <DependentUpon>Frm_refund_select.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Frm_refund_select2.resx">
-      <DependentUpon>Frm_refund_select2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Frm_RegEdit.resx">
       <DependentUpon>Frm_RegEdit.cs</DependentUpon>

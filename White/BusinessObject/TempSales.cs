@@ -30,9 +30,7 @@ namespace White.BusinessObject
 
 		public TempSales()
 		{
-			InitializeComponent();
-			
- 
+			InitializeComponent();	
 		}
 
 		private void barButtonItem12_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -233,7 +231,7 @@ namespace White.BusinessObject
 				List<string> itemId_list = frm_misc.swapdata["itemIdList"] as List<string>;
 				List<string> itemType_list = frm_misc.swapdata["itemTypeList"] as List<string>;
 				List<decimal> price_list = frm_misc.swapdata["priceList"] as List<decimal>;
-				List<int> nums_list = frm_misc.swapdata["numsList"] as List<int>;
+				List<decimal> nums_list = frm_misc.swapdata["numsList"] as List<decimal>;
 				List<string> itemInvoiceType_list = frm_misc.swapdata["itemInvoiceTypeList"] as List<string>;
 				int re = 0;
 
