@@ -55,7 +55,7 @@ namespace White.Forms
 		private void simpleButton1_Click(object sender, EventArgs e)
 		{
 			string rg003 = txt_rg003.Text;
-			int rg010;    //起始号位
+			int rg010 = 0;    //起始号位
 						  //int rg011 ;    //终止号位
 			int rg020;    //层数
 			int rg021;    //每层号位数
@@ -67,16 +67,17 @@ namespace White.Forms
 				txt_rg003.ErrorText = "请输入寄存排名字!";
 				return;
 			}
-			if (string.IsNullOrEmpty(txt_rg010.Text))
-			{
-				txt_rg010.Focus();
-				txt_rg010.ErrorText = "请输入起始号位!";
-				return;
-			}
-			else
-			{
-				rg010 = int.Parse(txt_rg010.Text);
-			}
+
+			//if (string.IsNullOrEmpty(txt_rg010.Text))
+			//{
+			//	txt_rg010.Focus();
+			//	txt_rg010.ErrorText = "请输入起始号位!";
+			//	return;
+			//}
+			//else
+			//{
+			//	rg010 = int.Parse(txt_rg010.Text);
+			//}
 
 			if (string.IsNullOrEmpty(txt_rg020.Text))
 			{
@@ -100,6 +101,21 @@ namespace White.Forms
 				rg021 = int.Parse(txt_rg021.Text);
 			}
 
+
+			if (radioGroup1.EditValue.ToString() == "0")    //传统模式 
+			{
+				if (string.IsNullOrEmpty(txt_rg010.Text))
+				{
+					txt_rg010.Focus();
+					txt_rg010.ErrorText = "请输入起始号位!";
+					return;
+				}
+				else
+				{
+					rg010 = int.Parse(txt_rg010.Text);
+				}
+			}
+			 
 			//////////////////  校验结束  ///////////////////////////
 			DataRow newrow = rs.GetDataset().Rg01.NewRow();
 			newrow["RG001"] = Tools.GetEntityPK("RG01");
@@ -112,6 +128,7 @@ namespace White.Forms
 			newrow["RG030"] = combo_rg030.SelectedIndex.ToString();
 			newrow["RG033"] = combo_rg033.SelectedIndex.ToString();
 			newrow["RG009"] = (this.swapdata["pnode"] as TreeListNode).Id;  //父节点编号
+			newrow["RG100"] = radioGroup1.EditValue.ToString();            //排列方案
 			newrow["STATUS"] = "1";          //状态
 
 			rs.swapdata["nodedata"] = newrow;
@@ -199,6 +216,30 @@ namespace White.Forms
 		private void simpleButton2_Click(object sender, EventArgs e)
 		{
 			this.Close();
+		}
+
+		/// <summary>
+		/// 排列模式
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void radioGroup1_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (radioGroup1.EditValue.ToString() == "0")   //传统模式
+			{
+				txt_rg010.Enabled = true;
+				txt_rg011.Enabled = true;
+				combo_rg030.Enabled = true;
+				combo_rg033.Enabled = true;
+				 
+			}
+			else if (radioGroup1.EditValue.ToString() == "1")
+			{
+				txt_rg010.Enabled = false;
+				txt_rg011.Enabled = false;
+				combo_rg030.Enabled = false;
+				combo_rg033.Enabled = false;				 
+			}
 		}
 	}
 }

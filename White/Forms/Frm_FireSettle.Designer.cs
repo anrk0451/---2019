@@ -47,7 +47,7 @@
             this.gridControl1.Location = new System.Drawing.Point(0, 0);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(650, 455);
+            this.gridControl1.Size = new System.Drawing.Size(731, 455);
             this.gridControl1.TabIndex = 61;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -61,7 +61,7 @@
             this.gridColumn4,
             this.gridColumn5});
             this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.IndicatorWidth = 45;
+            this.gridView1.IndicatorWidth = 51;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsCustomization.AllowGroup = false;
             this.gridView1.OptionsMenu.EnableGroupPanelMenu = false;
@@ -75,18 +75,21 @@
             // 
             this.gridColumn1.Caption = "销售编号";
             this.gridColumn1.FieldName = "SA001";
+            this.gridColumn1.MinWidth = 22;
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.OptionsColumn.AllowShowHide = false;
+            this.gridColumn1.Width = 84;
             // 
             // gridColumn2
             // 
             this.gridColumn2.Caption = "商品或服务名";
             this.gridColumn2.FieldName = "SA003";
+            this.gridColumn2.MinWidth = 22;
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.OptionsColumn.AllowEdit = false;
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 0;
-            this.gridColumn2.Width = 150;
+            this.gridColumn2.Width = 169;
             // 
             // gridColumn3
             // 
@@ -94,11 +97,12 @@
             this.gridColumn3.DisplayFormat.FormatString = "N2";
             this.gridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn3.FieldName = "PRICE";
+            this.gridColumn3.MinWidth = 22;
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 1;
-            this.gridColumn3.Width = 90;
+            this.gridColumn3.Width = 101;
             // 
             // gridColumn4
             // 
@@ -106,11 +110,12 @@
             this.gridColumn4.DisplayFormat.FormatString = "N1";
             this.gridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn4.FieldName = "NUMS";
+            this.gridColumn4.MinWidth = 22;
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 2;
-            this.gridColumn4.Width = 85;
+            this.gridColumn4.Width = 96;
             // 
             // gridColumn5
             // 
@@ -118,13 +123,14 @@
             this.gridColumn5.DisplayFormat.FormatString = "N2";
             this.gridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn5.FieldName = "SA007";
+            this.gridColumn5.MinWidth = 22;
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.OptionsColumn.AllowEdit = false;
             this.gridColumn5.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SA007", "合计={0:N2}")});
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 3;
-            this.gridColumn5.Width = 125;
+            this.gridColumn5.Width = 141;
             // 
             // b_exit
             // 
@@ -135,9 +141,9 @@
             this.b_exit.Appearance.Options.UseForeColor = true;
             this.b_exit.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
             this.b_exit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.b_exit.Location = new System.Drawing.Point(666, 51);
+            this.b_exit.Location = new System.Drawing.Point(749, 51);
             this.b_exit.Name = "b_exit";
-            this.b_exit.Size = new System.Drawing.Size(121, 31);
+            this.b_exit.Size = new System.Drawing.Size(136, 31);
             this.b_exit.TabIndex = 62;
             this.b_exit.Text = "退出";
             this.b_exit.Click += new System.EventHandler(this.b_exit_Click);
@@ -150,18 +156,18 @@
             this.b_ok.Appearance.Options.UseBackColor = true;
             this.b_ok.Appearance.Options.UseForeColor = true;
             this.b_ok.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
-            this.b_ok.Location = new System.Drawing.Point(666, 12);
+            this.b_ok.Location = new System.Drawing.Point(749, 12);
             this.b_ok.Name = "b_ok";
-            this.b_ok.Size = new System.Drawing.Size(121, 31);
+            this.b_ok.Size = new System.Drawing.Size(136, 31);
             this.b_ok.TabIndex = 63;
             this.b_ok.Text = "确定";
             this.b_ok.Click += new System.EventHandler(this.b_ok_Click);
             // 
             // Frm_FireSettle
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(796, 455);
+            this.ClientSize = new System.Drawing.Size(896, 455);
             this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.b_exit);
             this.Controls.Add(this.b_ok);

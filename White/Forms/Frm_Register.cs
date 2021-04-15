@@ -134,8 +134,14 @@ namespace White.Forms
 
 				be_position.Text = RegisterAction.GetBitFullName(regionId, bitDesc);
 				bitPrice = RegisterAction.GetBitPrice(regionId, bitDesc);
+				if(bitPrice % 12 != 0)
+				{
+					XtraMessageBox.Show("号位单价必须是12的倍数!","提示",MessageBoxButtons.OK,MessageBoxIcon.Error);
+					bitPrice = 0;
+					return;
+				}
+				 
 				txtedit_price.EditValue = bitPrice;
-
 				this.CalcHJ();
 			}
 		}
@@ -570,19 +576,11 @@ namespace White.Forms
 				XtraMessageBox.Show("寄存登记成功!现在开始开具发票!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 				///开财政票
-				if (!Envior.FIN_READY)
-					XtraMessageBox.Show("未连接到博思开票服务器!请稍后补开!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-				else
+				if (FinInvoice.GetCurrentPh() > 0)
 				{
-					string s_pjh = FinInvoice.GetCurrentPh(Envior.FIN_INVOICE_TYPE);
-					if (String.IsNullOrEmpty(s_pjh))
-						XtraMessageBox.Show("未获取到下一张财政发票号!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-					else
+					if (XtraMessageBox.Show("下一张财政发票号码:" + Envior.FIN_NEXT_BILL_NO + ",是否继续?", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 					{
-						if (XtraMessageBox.Show("下一张财政发票号码:" + s_pjh + ",是否继续?", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-						{
-							FinInvoice.Invoice(s_fa001);
-						}
+						FinInvoice.Invoice(s_fa001);
 					}
 				}
 

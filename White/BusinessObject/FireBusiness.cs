@@ -792,5 +792,24 @@ namespace White.BusinessObject
 				gridView1.EndUpdate();
 			}
 		}
+		/// <summary>
+		/// 编辑项目
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void barButtonItem9_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			if(gridView1.FocusedRowHandle >= 0)
+			{
+				int rowHandle = gridView1.FocusedRowHandle;
+				if(gridView1.GetRowCellValue(rowHandle,"SA002").ToString() == "08")
+				{
+					XtraMessageBox.Show("该项目不能编辑!","提示",MessageBoxButtons.OK,MessageBoxIcon.Information);
+					return;
+				}
+				this.SalesEdit(rowHandle);
+			}
+			
+		}
 	}
 }

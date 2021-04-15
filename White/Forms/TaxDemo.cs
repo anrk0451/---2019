@@ -317,31 +317,31 @@ namespace White.Forms
 		/// <param name="e"></param>
 		private void simpleButton7_Click(object sender, EventArgs e)
 		{
-			int result = FinInvoice.Connect();
+			//int result = FinInvoice.Connect();
 
-			if (result > 0)
-				XtraMessageBox.Show("连接开票服务器成功!");
-			else
-				XtraMessageBox.Show("连接开票服务器失败!");
+			//if (result > 0)
+			//	XtraMessageBox.Show("连接开票服务器成功!");
+			//else
+			//	XtraMessageBox.Show("连接开票服务器失败!");
 		}
 
 		private void simpleButton8_Click(object sender, EventArgs e)
 		{
-			FinInvoice.DisConnect();
+			//FinInvoice.DisConnect();
 		}
 
 		private void simpleButton9_Click(object sender, EventArgs e)
 		{
-			string pjh = FinInvoice.GetCurrentPh("04007002");
-			if (!string.IsNullOrEmpty(pjh))
-			{
-				MessageBox.Show("新的票据号" + pjh);
-				memoEdit1.Text = pjh;
-			}
-			else
-			{
-				MessageBox.Show("获取票据号失败!");
-			}
+			//string pjh = FinInvoice.GetCurrentPh("04007002");
+			//if (!string.IsNullOrEmpty(pjh))
+			//{
+			//	MessageBox.Show("新的票据号" + pjh);
+			//	memoEdit1.Text = pjh;
+			//}
+			//else
+			//{
+			//	MessageBox.Show("获取票据号失败!");
+			//}
 
 		}
 
@@ -352,9 +352,9 @@ namespace White.Forms
 		/// <param name="e"></param>
 		private void simpleButton10_Click(object sender, EventArgs e)
 		{
-			string s_content = "<&票据><&票据头>姓名=发票测试		</&票据头><&收费项目>收费项目=10000	计费数量=1	收费标准=100.00	金额=100	收费项目=20000	计费数量=1	收费标准=18.00	金额=18	</&收费项目></&票据>";
-			string retstr = FinInvoice.Invoice(s_content, 1, "04007002", "");
-			memoEdit2.Text = retstr;
+			//string s_content = "<&票据><&票据头>姓名=发票测试		</&票据头><&收费项目>收费项目=10000	计费数量=1	收费标准=100.00	金额=100	收费项目=20000	计费数量=1	收费标准=18.00	金额=18	</&收费项目></&票据>";
+			//string retstr = FinInvoice.Invoice(s_content, 1, "04007002", "");
+			//memoEdit2.Text = retstr;
 			///成功返回
 			///成功:04007002,56140002,118,财乙（2010) 
 		}
@@ -366,8 +366,8 @@ namespace White.Forms
 		/// <param name="e"></param>
 		private void simpleButton11_Click(object sender, EventArgs e)
 		{
-			string retstr = FinInvoice.Remove("票据类型=14004003|票据号=00040005|注册号=1114512");
-			memoEdit3.Text = retstr;
+			//string retstr = FinInvoice.Remove("票据类型=14004003|票据号=00040005|注册号=1114512");
+			//memoEdit3.Text = retstr;
 		}
 
 		private void simpleButton12_Click(object sender, EventArgs e)
@@ -378,20 +378,20 @@ namespace White.Forms
 
 		private void simpleButton13_Click(object sender, EventArgs e)
 		{
-			int result = FinInvoice.AdvConnect("001", "", "");
+			//int result = FinInvoice.AdvConnect("001", "", "");
 
-			if (result > 0)
-				XtraMessageBox.Show("连接开票服务器成功!");
-			else
-				XtraMessageBox.Show("连接开票服务器失败!");
+			//if (result > 0)
+			//	XtraMessageBox.Show("连接开票服务器成功!");
+			//else
+			//	XtraMessageBox.Show("连接开票服务器失败!");
 		}
 
 		private void simpleButton14_Click(object sender, EventArgs e)
 		{
-			if (FinInvoice.IsConnect())
-				XtraMessageBox.Show("已经连接!");
-			else
-				XtraMessageBox.Show("尚未连接!");
+			//if (FinInvoice.IsConnect())
+			//	XtraMessageBox.Show("已经连接!");
+			//else
+			//	XtraMessageBox.Show("尚未连接!");
 		}
 
 

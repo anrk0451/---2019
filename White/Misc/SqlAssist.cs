@@ -225,6 +225,18 @@ namespace White
 			return returnValue.Value;
 		}
 
+        /// <summary>
+        /// 执行sql语句 无事务版本
+        /// </summary>
+        /// <param name="safeSql"></param>
+        /// <returns></returns>
+        public static int ExecuteNonQuery_NoTans(string safeSql)
+        {
+            OracleCommand cmd = new OracleCommand(safeSql, conn);
+            int result = cmd.ExecuteNonQuery();
+            return result;
+        }
 
-	}
+
+    }
 }

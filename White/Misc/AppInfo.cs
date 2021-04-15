@@ -24,11 +24,16 @@ namespace White
         private static int _TAXITEMCOUNT = 8;                       //打印发票清单阈值
 		private static string _REG_TAX_NAME = "寄存费";				//寄存费税务名称
 
-        private static string _FIN_TRAFFIC = "90001";               //接运
-        private static string _FIN_FIRE = "90003";                  //火化
-        private static string _FIN_STORE = "90002";                 //存放
-        private static string _FIN_REGISTER = "90004";              //骨灰寄存
+        //private static string _FIN_TRAFFIC = "90001";               //接运
+        //private static string _FIN_FIRE = "90003";                  //火化
+        //private static string _FIN_STORE = "90002";                 //存放
+        //private static string _FIN_REGISTER = "90004";              //骨灰寄存
 
+
+        private static string _FIN_TRAFFIC = "10304490801";               //接运
+        private static string _FIN_FIRE = "10304490802";                  //火化
+        private static string _FIN_STORE = "10304490804";                 //存放
+        private static string _FIN_REGISTER = "10304490803";              //骨灰寄存
 
         public static string UnitName
         {

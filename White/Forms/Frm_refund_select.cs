@@ -160,21 +160,21 @@ namespace White.Forms
                                 sb_content.Append(s_invcode + "	" + dec_fee.ToString() + "	");
                             }
 
-                            if (!Envior.FIN_READY)
-                                XtraMessageBox.Show("未连接到博思开票服务器!请稍后补开!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            else
-                            {
-                                string s_newpjh = FinInvoice.GetCurrentPh(Envior.FIN_INVOICE_TYPE);
-                                if (String.IsNullOrEmpty(s_newpjh))
-                                    XtraMessageBox.Show("未获取到下一张财政发票号!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                else
-                                {
-                                    if (XtraMessageBox.Show("下一张财政发票号码:" + s_newpjh + ",是否继续?", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                                    {
-                                        FinInvoice.Refund(s_pjlx, s_pjh, s_zch, sb_content.ToString(), "F_Qt1 = xxx | F_Qt2 = xxx | F_Qt3 = xxx", s_fa001, s_newpjh, dec_fin_sum);
-                                    }
-                                }
-                            }
+                            //if (!Envior.FIN_READY)
+                            //    XtraMessageBox.Show("未连接到博思开票服务器!请稍后补开!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            //else
+                            //{
+                            //    string s_newpjh = FinInvoice.GetCurrentPh(Envior.FIN_INVOICE_TYPE);
+                            //    if (String.IsNullOrEmpty(s_newpjh))
+                            //        XtraMessageBox.Show("未获取到下一张财政发票号!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            //    else
+                            //    {
+                            //        if (XtraMessageBox.Show("下一张财政发票号码:" + s_newpjh + ",是否继续?", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                            //        {
+                            //            FinInvoice.Refund(s_pjlx, s_pjh, s_zch, sb_content.ToString(), "F_Qt1 = xxx | F_Qt2 = xxx | F_Qt3 = xxx", s_fa001, s_newpjh, dec_fin_sum);
+                            //        }
+                            //    }
+                            //}
                         }
                     }
                     //else if (Math.Abs(dec_tax_sum) > 0 && s_fa190.Substring(1, 1) == "1")  //退费项目含税票项目 并且税务发票已开

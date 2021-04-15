@@ -500,5 +500,32 @@ namespace White.Action
 			return SqlAssist.ExecuteScalar("select pkg_business.fun_CheckWorkStationCompare(:ic_fa001,:ic_ws001,:ic_itype) from dual", new OracleParameter[] { op_fa001, op_ws001, op_itype }).ToString();
 
 		}
+
+		/// <summary>
+		/// 返回服务器时间
+		/// </summary>
+		/// <returns></returns>
+		public static DateTime GetServerTime()
+		{
+			return Convert.ToDateTime(SqlAssist.ExecuteScalar("select sysdate from dual"));
+		}
+
+		/// <summary>
+		/// 财政退费操作中 原发票是否在新接口上线前
+		/// </summary>
+		/// <param name="fa001"></param>
+		/// <returns></returns>
+		public static bool FinRefundBeforeOnline(string fa001)
+		{
+			OracleParameter op_fa001 = new OracleParameter("ic_fa001", OracleDbType.Varchar2, 10);
+			op_fa001.Direction = ParameterDirection.Input;
+			op_fa001.Value = fa001;
+
+			int i_result = Convert.ToInt32(SqlAssist.ExecuteScalar("select pkg_business.fun_FinRefundBeforeOnline(:ic_fa001) from dual", new OracleParameter[] { op_fa001 }));
+			if (i_result == 1)
+				return true;
+			else
+				return false;
+		}
 	}
 }

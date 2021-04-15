@@ -240,63 +240,29 @@ namespace White.Forms
 				{
 					if (XtraMessageBox.Show("现在开具【发票】吗?", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
 					{
-						if (!Envior.FIN_READY)
-							XtraMessageBox.Show("未连接到博思开票服务器!请稍后补开!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-						else
+						if (FinInvoice.GetCurrentPh() > 0)
 						{
-							string s_pjh = FinInvoice.GetCurrentPh(Envior.FIN_INVOICE_TYPE);
-							if (String.IsNullOrEmpty(s_pjh))
-								XtraMessageBox.Show("未获取到下一张财政发票号!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-							else
+							if (XtraMessageBox.Show("下一张财政发票号码:" + Envior.FIN_NEXT_BILL_NO + ",是否继续?", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 							{
-								if (XtraMessageBox.Show("下一张财政发票号码:" + s_pjh + ",是否继续?", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-								{
-									FinInvoice.Invoice(fa001);
-								}
+								FinInvoice.Invoice(fa001);
 							}
 						}
 					}
 				}
 				else if(isrefund && Math.Abs(nums) > 0 )    //退费发票
 				{
-					string s_old_pjlx = string.Empty;
-					string s_old_pjh = string.Empty;
-					string s_old_zch = string.Empty;
-					OracleDataReader reader_log = SqlAssist.ExecuteReader("select * from fin_log where settleId ='" + last_fa001 +"'");
-					reader_log.Read();
-					if (reader_log.HasRows)
+					//如果是新版接口上线前开具的原发票
+					if (MiscAction.FinRefundBeforeOnline(fa001))
 					{
-						s_old_pjlx = reader_log["INVOICEKIND"].ToString();    //票据类型
-						s_old_pjh = reader_log["INVOICENO"].ToString();       //票据号
-						s_old_zch = reader_log["INVOICEZCH"].ToString();      //注册号
+						XtraMessageBox.Show("原发票在财政新接口上线前开具,不能开具对应退费发票,请在财政发票系统内完成发票开具.\r\n 开具成功后请更新发票号!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 					}
-					else 
+					else if (FinInvoice.GetCurrentPh() > 0)
 					{
-						XtraMessageBox.Show("读取缴费发票信息出错!","错误",MessageBoxButtons.OK,MessageBoxIcon.Error);
-					}
-					reader_log.Dispose();
-					Frm_refundInfo frm_refund = new Frm_refundInfo(s_old_pjlx,s_old_pjh,s_old_zch);
-					if(frm_refund.ShowDialog() == DialogResult.OK)
-					{
-						s_old_zch = frm_refund.swapdata["zch"].ToString(); //注册号
-						if (!Envior.FIN_READY)
-							XtraMessageBox.Show("未连接到博思开票服务器!请稍后补开!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-						else
+						if (XtraMessageBox.Show("下一张财政发票号码:" + Envior.FIN_NEXT_BILL_NO + ",是否继续?", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 						{
-							string s_newpjh = FinInvoice.GetCurrentPh(Envior.FIN_INVOICE_TYPE);
-							if (String.IsNullOrEmpty(s_newpjh))
-								XtraMessageBox.Show("未获取到下一张财政发票号!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-							else
-							{
-								if (XtraMessageBox.Show("下一张财政发票号码:" + s_newpjh + ",是否继续?", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-								{
-									string s_tkitem = MiscAction.GetItemInvoiceCode("08", "") + "	" + Math.Abs(nums * price) + "	";
-									FinInvoice.Refund(s_old_pjlx, s_old_pjh, s_old_zch, s_tkitem, "F_Qt1=xxx|F_Qt2=xxx|F_Qt3=xxx",fa001, s_newpjh,nums * price);
-								}
-							}
+							FinInvoice.Refund(fa001);
 						}
 					}
-					frm_refund.Dispose();
 				}
 			}
 			DialogResult = DialogResult.OK;

@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FinanceDaySearch));
-			this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
+			this.barManager1 = new DevExpress.XtraBars.BarManager();
 			this.bar1 = new DevExpress.XtraBars.Bar();
 			this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
 			this.bBi_bk = new DevExpress.XtraBars.BarButtonItem();
@@ -105,6 +104,7 @@
 			this.gridColumn26 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn27 = new DevExpress.XtraGrid.Columns.GridColumn();
 			this.gridColumn28 = new DevExpress.XtraGrid.Columns.GridColumn();
+			this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
@@ -155,8 +155,9 @@
             this.bBi_refund,
             this.barStaticItem1,
             this.barButtonItem2,
-            this.barEditItem1});
-			this.barManager1.MaxItemId = 18;
+            this.barEditItem1,
+            this.barButtonItem3});
+			this.barManager1.MaxItemId = 19;
 			this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemTextEdit1,
             this.repositoryItemLookUpEdit1,
@@ -223,7 +224,8 @@
 			this.barSubItem1.Id = 6;
 			this.barSubItem1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barSubItem1.ImageOptions.SvgImage")));
 			this.barSubItem1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem8),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem3),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem8, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem9),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem2)});
 			this.barSubItem1.Name = "barSubItem1";
@@ -292,13 +294,13 @@
 			this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
 			this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
 			this.barDockControlTop.Manager = this.barManager1;
-			this.barDockControlTop.Size = new System.Drawing.Size(1540, 39);
+			this.barDockControlTop.Size = new System.Drawing.Size(1540, 34);
 			// 
 			// barDockControlBottom
 			// 
 			this.barDockControlBottom.CausesValidation = false;
 			this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.barDockControlBottom.Location = new System.Drawing.Point(0, 866);
+			this.barDockControlBottom.Location = new System.Drawing.Point(0, 742);
 			this.barDockControlBottom.Manager = this.barManager1;
 			this.barDockControlBottom.Size = new System.Drawing.Size(1540, 0);
 			// 
@@ -306,17 +308,17 @@
 			// 
 			this.barDockControlLeft.CausesValidation = false;
 			this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-			this.barDockControlLeft.Location = new System.Drawing.Point(0, 39);
+			this.barDockControlLeft.Location = new System.Drawing.Point(0, 34);
 			this.barDockControlLeft.Manager = this.barManager1;
-			this.barDockControlLeft.Size = new System.Drawing.Size(0, 827);
+			this.barDockControlLeft.Size = new System.Drawing.Size(0, 708);
 			// 
 			// barDockControlRight
 			// 
 			this.barDockControlRight.CausesValidation = false;
 			this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-			this.barDockControlRight.Location = new System.Drawing.Point(1540, 39);
+			this.barDockControlRight.Location = new System.Drawing.Point(1540, 34);
 			this.barDockControlRight.Manager = this.barManager1;
-			this.barDockControlRight.Size = new System.Drawing.Size(0, 827);
+			this.barDockControlRight.Size = new System.Drawing.Size(0, 708);
 			// 
 			// barButtonItem7
 			// 
@@ -359,14 +361,14 @@
 			this.tabPane1.Controls.Add(this.tabNavigationPage1);
 			this.tabPane1.Controls.Add(this.tabNavigationPage2);
 			this.tabPane1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tabPane1.Location = new System.Drawing.Point(0, 39);
+			this.tabPane1.Location = new System.Drawing.Point(0, 34);
 			this.tabPane1.Name = "tabPane1";
 			this.tabPane1.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] {
             this.tabNavigationPage1,
             this.tabNavigationPage2});
-			this.tabPane1.RegularSize = new System.Drawing.Size(1540, 827);
+			this.tabPane1.RegularSize = new System.Drawing.Size(1540, 708);
 			this.tabPane1.SelectedPage = this.tabNavigationPage1;
-			this.tabPane1.Size = new System.Drawing.Size(1540, 827);
+			this.tabPane1.Size = new System.Drawing.Size(1540, 708);
 			this.tabPane1.TabIndex = 4;
 			this.tabPane1.Text = "tabPane1";
 			this.tabPane1.SelectedPageIndexChanged += new System.EventHandler(this.tabPane1_SelectedPageIndexChanged);
@@ -379,7 +381,7 @@
 			this.tabNavigationPage1.ItemShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.ImageAndText;
 			this.tabNavigationPage1.Name = "tabNavigationPage1";
 			this.tabNavigationPage1.Properties.ShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.ImageAndText;
-			this.tabNavigationPage1.Size = new System.Drawing.Size(1540, 795);
+			this.tabNavigationPage1.Size = new System.Drawing.Size(1540, 673);
 			// 
 			// splitContainerControl1
 			// 
@@ -391,8 +393,8 @@
 			this.splitContainerControl1.Panel1.Text = "Panel1";
 			this.splitContainerControl1.Panel2.Controls.Add(this.gridControl2);
 			this.splitContainerControl1.Panel2.Text = "Panel2";
-			this.splitContainerControl1.Size = new System.Drawing.Size(1540, 795);
-			this.splitContainerControl1.SplitterPosition = 442;
+			this.splitContainerControl1.Size = new System.Drawing.Size(1540, 673);
+			this.splitContainerControl1.SplitterPosition = 379;
 			this.splitContainerControl1.TabIndex = 0;
 			// 
 			// gridControl1
@@ -404,7 +406,7 @@
 			this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit1,
             this.repositoryItemHyperLinkEdit1});
-			this.gridControl1.Size = new System.Drawing.Size(1540, 442);
+			this.gridControl1.Size = new System.Drawing.Size(1540, 379);
 			this.gridControl1.TabIndex = 4;
 			this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -429,7 +431,6 @@
             this.gridColumn2,
             this.gridColumn3,
             this.gridColumn31});
-			this.gridView1.DetailHeight = 408;
 			this.gridView1.GridControl = this.gridControl1;
 			this.gridView1.IndicatorWidth = 51;
 			this.gridView1.Name = "gridView1";
@@ -593,7 +594,7 @@
 			this.gridControl2.MainView = this.gridView2;
 			this.gridControl2.MenuManager = this.barManager1;
 			this.gridControl2.Name = "gridControl2";
-			this.gridControl2.Size = new System.Drawing.Size(1540, 343);
+			this.gridControl2.Size = new System.Drawing.Size(1540, 279);
 			this.gridControl2.TabIndex = 2;
 			this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -611,7 +612,6 @@
             this.gridColumn13,
             this.gridColumn14,
             this.gridColumn15});
-			this.gridView2.DetailHeight = 408;
 			this.gridView2.GridControl = this.gridControl2;
 			this.gridView2.Name = "gridView2";
 			this.gridView2.OptionsBehavior.Editable = false;
@@ -692,7 +692,7 @@
 			this.tabNavigationPage2.ItemShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.ImageAndText;
 			this.tabNavigationPage2.Name = "tabNavigationPage2";
 			this.tabNavigationPage2.Properties.ShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.ImageAndText;
-			this.tabNavigationPage2.Size = new System.Drawing.Size(1540, 785);
+			this.tabNavigationPage2.Size = new System.Drawing.Size(1540, 673);
 			// 
 			// splitContainerControl2
 			// 
@@ -704,8 +704,8 @@
 			this.splitContainerControl2.Panel1.Text = "Panel1";
 			this.splitContainerControl2.Panel2.Controls.Add(this.gridControl4);
 			this.splitContainerControl2.Panel2.Text = "Panel2";
-			this.splitContainerControl2.Size = new System.Drawing.Size(1540, 785);
-			this.splitContainerControl2.SplitterPosition = 561;
+			this.splitContainerControl2.Size = new System.Drawing.Size(1540, 673);
+			this.splitContainerControl2.SplitterPosition = 481;
 			this.splitContainerControl2.TabIndex = 0;
 			// 
 			// gridControl3
@@ -717,7 +717,7 @@
 			this.gridControl3.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit2,
             this.repositoryItemHyperLinkEdit2});
-			this.gridControl3.Size = new System.Drawing.Size(1540, 561);
+			this.gridControl3.Size = new System.Drawing.Size(1540, 481);
 			this.gridControl3.TabIndex = 5;
 			this.gridControl3.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView3});
@@ -738,7 +738,6 @@
             this.gridColumn20,
             this.gridColumn29,
             this.gridColumn30});
-			this.gridView3.DetailHeight = 408;
 			this.gridView3.GridControl = this.gridControl3;
 			this.gridView3.IndicatorWidth = 51;
 			this.gridView3.Name = "gridView3";
@@ -864,7 +863,7 @@
 			this.gridControl4.MainView = this.gridView4;
 			this.gridControl4.MenuManager = this.barManager1;
 			this.gridControl4.Name = "gridControl4";
-			this.gridControl4.Size = new System.Drawing.Size(1540, 214);
+			this.gridControl4.Size = new System.Drawing.Size(1540, 177);
 			this.gridControl4.TabIndex = 3;
 			this.gridControl4.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView4});
@@ -882,7 +881,6 @@
             this.gridColumn26,
             this.gridColumn27,
             this.gridColumn28});
-			this.gridView4.DetailHeight = 408;
 			this.gridView4.GridControl = this.gridControl4;
 			this.gridView4.Name = "gridView4";
 			this.gridView4.OptionsBehavior.Editable = false;
@@ -955,9 +953,16 @@
 			this.gridColumn28.VisibleIndex = 3;
 			this.gridColumn28.Width = 141;
 			// 
+			// barButtonItem3
+			// 
+			this.barButtonItem3.Caption = "财政发票";
+			this.barButtonItem3.Id = 18;
+			this.barButtonItem3.Name = "barButtonItem3";
+			this.barButtonItem3.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem3_ItemClick);
+			// 
 			// FinanceDaySearch
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.tabPane1);
 			this.Controls.Add(this.barDockControlLeft);
@@ -965,7 +970,7 @@
 			this.Controls.Add(this.barDockControlBottom);
 			this.Controls.Add(this.barDockControlTop);
 			this.Name = "FinanceDaySearch";
-			this.Size = new System.Drawing.Size(1540, 866);
+			this.Size = new System.Drawing.Size(1540, 742);
 			this.Load += new System.EventHandler(this.FinanceDaySearch_Load);
 			((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
@@ -1073,5 +1078,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox1;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn31;
-    }
+		private DevExpress.XtraBars.BarButtonItem barButtonItem3;
+	}
 }

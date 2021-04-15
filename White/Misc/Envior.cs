@@ -13,15 +13,25 @@ namespace White.Misc
         public static string cur_user { get; set; }         //当前登录用户
         public static string cur_userId { get; set; }       //当前登录用户Id
         public static string cur_userName { get; set; }     //当前登录用户名
-        public static string cur_userBosi  { get; set; }    //博思服务账号
-        public static string cur_pwdBosi { get; set; }      //博思服务密码
 
 
-        //关于财政发票
-        public static bool FINANCE_INVOICE_HANDLE { get; set; }   //是否允许开具财政发票操作
-        
-        public static string FIN_INVOICE_TITLE { get; set; }      //财政发票交款人标题
-        public static string FIN_INVOICE_TYPE { get; set; }       //财政发票票据类型
+        public static string FIN_REGION_CODE { get; set; }        //财政发票-区划
+        public static string FIN_VERSION { get; set; }            //版本
+        public static string FIN_AGENCY_CODE { get; set; }        //单位编码
+        public static string FIN_AGENCY_NAME { get; set; }        //单位名称
+        public static string FIN_URL { get; set; }                 //财政发票服务URL
+        public static string FIN_APPID { get; set; }               //appid
+        public static string FIN_APPKEY { get; set; }              //app key
+        public static string FIN_BATCH_CODE { get; set; }          //票据代码(以前的注册号)
+        public static string FIN_CODE { get; set; }                //票据种类编码(以前的票据类型)
+        public static string FIN_BILLNAME { get; set; }            //票据名称
+        public static string FIN_BILL_SITE { get; set; }           //开票点编码
+
+        public static string FIN_NEXT_BATCH_CODE { get; set; }     //财政票（下一张注册号）
+        public static string FIN_NEXT_BILL_NO { get; set; }        //财政票(下一张票号)
+
+
+
 
 
 

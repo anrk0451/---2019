@@ -500,41 +500,20 @@ namespace White.BusinessObject
 							///作废财政发票
 							if (s_fa190.Substring(0, 1) == "1")
 							{
-								string s_pjlx = string.Empty;
-								string s_pjh = string.Empty;
-								string s_zch = string.Empty;
-								if (Envior.FIN_READY)
+								//如果不在新接口上线前,则可以作废发票
+								if (!MiscAction.FinRefundBeforeOnline(s_fa001))
 								{
-									using (OracleDataReader reader_fin = SqlAssist.ExecuteReader("select * from fin_log where settleId='" + s_fa001 + "'"))
+									if (FinInvoice.InvoiceRemoved(s_fa001) > 0)
 									{
-										reader_fin.Read();
-										s_pjlx = reader_fin["INVOICEKIND"].ToString();
-										s_pjh = reader_fin["INVOICENO"].ToString();
-										s_zch = reader_fin["INVOICEZCH"].ToString();
-										if (string.IsNullOrEmpty(s_zch))
-										{
-											Frm_Zch_input frm_zch = new Frm_Zch_input();
-											if (frm_zch.ShowDialog() == DialogResult.OK)
-											{
-												s_zch = frm_zch.swapdata["zch"].ToString();
-											}
-										}
-
-										if (!string.IsNullOrEmpty(s_zch) && !string.IsNullOrEmpty(s_pjlx) && !string.IsNullOrEmpty(s_pjh))
-										{
-											if (FinInvoice.Remove(s_zch, s_pjlx, s_pjh) > 0)
-											{   //修改发票作废日志
-												MiscAction.FinRemove_log(s_fa001, Envior.cur_userName, s_reason);
-											}
-										}
+										MiscAction.FinRemove_log(s_fa001, Envior.cur_userName, s_reason);
 									}
 								}
 								else
 								{
-									XtraMessageBox.Show("未连接到财政发票服务器!请在博思客户端软件中作废！","提示",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+									XtraMessageBox.Show("此笔收费为新财政发票接口上线前开具,发票需要在系统外进行作废!详情请与管理员联系!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
 								}
-								
-							}///作废税务发票
+							}
+							///作废税务发票
 							if (s_fa190.Substring(1, 1) == "1")
 							{
 								if (TaxInvoice.Remove(s_fa001, Envior.cur_userName) > 0) //发票作废成功
@@ -632,29 +611,17 @@ namespace White.BusinessObject
 				}
 				return;
 			}
-
-
-
-	 
+			 
 			//需要开具财政发票
 			if(gridView1.GetRowCellValue(rowHandle,"FA190").ToString().Substring(0,1) == "0"  &&
 				gridView1.GetRowCellValue(rowHandle, "FA195").ToString().Substring(0, 1) == "1")
 			{
 				XtraMessageBox.Show("现在准备开具财政发票!","提示",MessageBoxButtons.OK,MessageBoxIcon.Information);
-				if (!Envior.FIN_READY)
-					XtraMessageBox.Show("未连接到博思开票服务器!请稍后补开!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-				else
+				if (FinInvoice.GetCurrentPh() > 0)
 				{
-					//XtraMessageBox.Show("debug 1");
-					string s_pjh = FinInvoice.GetCurrentPh(Envior.FIN_INVOICE_TYPE);
-					if (String.IsNullOrEmpty(s_pjh))
-						XtraMessageBox.Show("未获取到下一张财政发票号!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-					else
+					if (XtraMessageBox.Show("下一张财政发票号码:" + Envior.FIN_NEXT_BILL_NO + ",是否继续?", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 					{
-						if (XtraMessageBox.Show("下一张财政发票号码:" + s_pjh + ",是否继续?", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-						{
-							FinInvoice.Invoice(s_fa001);
-						}
+						FinInvoice.Invoice(s_fa001);
 					}
 				}
 			}
@@ -684,75 +651,18 @@ namespace White.BusinessObject
 		/// <param name="fa001"></param>
 		private void ReInvoiceFinRefund(string fa001)
 		{
-			////获取原票据信息
-			string s_old_pjlx = string.Empty;
-			string s_old_pjh = string.Empty;
-			string s_old_zch = string.Empty;
-			string s_invcode = string.Empty;
-
-			OracleParameter op_fa001 = new OracleParameter("fa001", OracleDbType.Varchar2,10);
-			op_fa001.Direction = ParameterDirection.Input;
-			op_fa001.Value = fa001;
- 
-			OracleDataReader reader_fin = SqlAssist.ExecuteReader("select * from fin_log where settleId = (select rf300 from refund where rf001 = :fa001 )",new OracleParameter[] { op_fa001});
+			//如果是新版接口上线前开具的原发票
+			if (MiscAction.FinRefundBeforeOnline(fa001))
 			{
-				reader_fin.Read();
-				if (reader_fin.HasRows)
-				{
-					s_old_pjlx = reader_fin["INVOICEKIND"].ToString();
-					s_old_pjh = reader_fin["INVOICENO"].ToString();
-					s_old_zch = reader_fin["INVOICEZCH"].ToString();
-					if (string.IsNullOrEmpty(s_old_zch))
-					{
-						Frm_Zch_input frm_zch = new Frm_Zch_input();
-						if (frm_zch.ShowDialog() == DialogResult.OK)
-						{
-							s_old_zch = frm_zch.swapdata["zch"].ToString();
-						}
-						frm_zch.Dispose();
-					}
-				}
-				reader_fin.Dispose();
+				XtraMessageBox.Show("原发票在财政新接口上线前开具,不能开具对应退费发票,请在财政发票系统内完成发票开具.\r\n 开具成功后请更新发票号!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 			}
-
-			StringBuilder sb_content = new StringBuilder();
-			decimal dec_fee = decimal.Zero;
-			decimal dec_sum = decimal.Zero;
-
-			///构造 开票明细
-			OracleDataReader reader = SqlAssist.ExecuteReader("select * from v_sa01 where sa010 ='" + fa001 + "'");
+			else if (FinInvoice.GetCurrentPh() > 0)
 			{
-				while (reader.Read())
+				if (XtraMessageBox.Show("下一张财政发票号码:" + Envior.FIN_NEXT_BILL_NO + ",是否继续?", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 				{
-					s_invcode = MiscAction.GetItemInvoiceCode(reader["SA002"].ToString(), reader["SA004"].ToString());
- 
-
-					dec_fee =  Convert.ToDecimal(reader["SA007"]);
-					sb_content.Append(s_invcode + "\t" + Math.Abs(dec_fee).ToString() + "\t");
-					dec_sum += dec_fee;
+					FinInvoice.Refund(fa001);
 				}
 			}
-			reader.Dispose();
-
-			if (!Envior.FIN_READY)
-				XtraMessageBox.Show("未连接到博思开票服务器!请稍后补开!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-			else
-			{
-				string s_newpjh = FinInvoice.GetCurrentPh(Envior.FIN_INVOICE_TYPE);
-				if (String.IsNullOrEmpty(s_newpjh))
-					XtraMessageBox.Show("未获取到下一张财政发票号!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning); 
-				else
-				{
-					if (XtraMessageBox.Show("下一张财政发票号码:" + s_newpjh + ",是否继续?", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-					{
-						//string s_debug = "老票据类型:" + s_old_pjlx + "老票号:" + s_old_pjh + "注册号:" + s_old_zch + "新票据号" + s_newpjh + "合计金额:" + dec_sum.ToString() + "\r\n" + sb_content.ToString();
-						
-						barEditItem1.EditValue = sb_content.ToString();
-						//XtraMessageBox.Show(s_debug);
-						FinInvoice.Refund(s_old_pjlx, s_old_pjh, s_old_zch, sb_content.ToString(), "F_Qt1 = xxx | F_Qt2 = xxx | F_Qt3 = xxx", fa001, s_newpjh, dec_sum);
-					}
-				}
-			}			 
 		}
 
 		/// <summary>
@@ -923,20 +833,6 @@ namespace White.BusinessObject
 			string s_fa001 = string.Empty;
 			if (tabPane1.SelectedPageIndex == 0)
 			{
-				//rowHandle = gridView1.FocusedRowHandle;
-				////负数和寄存不能退费
-				//if (Convert.ToDecimal(gridView1.GetRowCellValue(rowHandle,"FA004")) < 0 /*|| gridView1.GetRowCellValue(rowHandle, "FA002").ToString() == "2"*/)   
-				//{
-				//	XtraMessageBox.Show("此收费记录不能退费!","提示",MessageBoxButtons.OK,MessageBoxIcon.Warning);
-				//	return;
-				//}
-				//s_fa001 = gridView1.GetRowCellValue(rowHandle, "FA001").ToString();
-				//if (MiscAction.HaveRefund(s_fa001))
-				//{
-				//	XtraMessageBox.Show("此收费记录已经有退费记录,不能再次退费!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-				//	return;
-				//}
-				//s_billType = "%";
 				return;
 			}
 			else if(tabPane1.SelectedPageIndex == 1)
@@ -995,6 +891,44 @@ namespace White.BusinessObject
 			if (gridView1.GetRowCellValue(rowHandle, "FA002").ToString() == "0")
 				//PrtServAction.Print_HHZM(s_ac001);
 				PrtServAction.Print_HHZM(s_ac001, Envior.mform.Handle.ToInt32());
+		}
+		/// <summary>
+		/// 打印财政发票
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			int rowHandle = gridView1.FocusedRowHandle;
+			if (rowHandle >= 0)
+			{
+				if (gridView1.GetRowCellValue(rowHandle, "FA190").ToString().Substring(0, 1) == "1")
+				{
+					string s_fa001 = gridView1.GetRowCellValue(rowHandle, "FA001").ToString();
+					//如果是新接口上线前开具的发票,不能打印
+					if (MiscAction.FinRefundBeforeOnline(s_fa001))
+					{
+						XtraMessageBox.Show("此笔收费财政发票为新接口上线前开具,不能通过新接口打印!", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+						return;
+					}
+
+					OracleDataReader reader = SqlAssist.ExecuteReader("select INVOICENO,INVOICEZCH from fin_log where settleId ='" + s_fa001 + "'");
+					if (reader.HasRows && reader.Read())
+					{
+						string s_batch_code = reader["INVOICEZCH"].ToString();
+						string s_billno = reader["INVOICENO"].ToString();
+						reader.Dispose();
+						if (XtraMessageBox.Show("打印财政发票?\r\n" + "注册号:" + s_batch_code + "\r\n" + "发票号:" + s_billno, "确认", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+						{
+							FinInvoice.PrintInvoice(s_batch_code, s_billno);
+						}
+					}
+				}
+				else
+				{
+					XtraMessageBox.Show("当前收费记录未开财政发票!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				}
+			}
 		}
 	}
 }

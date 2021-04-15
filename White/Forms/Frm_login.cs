@@ -96,8 +96,8 @@ namespace White.Forms
 			{
 				Envior.cur_userId = uc01.uc001;
 				Envior.cur_userName = uc01.uc003;
-				Envior.cur_userBosi = uc01.uc007;     //博思账号
-				Envior.cur_pwdBosi = uc01.uc008;	  //博思密码
+				//Envior.cur_userBosi = uc01.uc007;   //博思账号
+				//Envior.cur_pwdBosi = uc01.uc008;	  //博思密码
 				 
 				Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 				config.AppSettings.Settings["lastusername"].Value = s_userCode;

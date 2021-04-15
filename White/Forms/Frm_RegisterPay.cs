@@ -107,6 +107,13 @@ namespace White.Forms
 					e.DisplayText = "原始登记";
 				}
 			}
+			else if(e.Column.FieldName == "LAMP") //送灯
+			{
+				if (e.Value.ToString() == "1")
+					e.DisplayText = "有";
+				else
+					e.DisplayText = "无";
+			}
 		}
 
 		/// <summary>
@@ -288,19 +295,11 @@ namespace White.Forms
 
 				if (XtraMessageBox.Show("缴费成功!现在打印财政【发票】吗?", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
 				{
-					if (!Envior.FIN_READY)
-						XtraMessageBox.Show("未连接到博思开票服务器!请稍后补开!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-					else
+					if (FinInvoice.GetCurrentPh() > 0)
 					{
-						string s_pjh = FinInvoice.GetCurrentPh(Envior.FIN_INVOICE_TYPE);
-						if (String.IsNullOrEmpty(s_pjh))
-							XtraMessageBox.Show("未获取到下一张财政发票号!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-						else
+						if (XtraMessageBox.Show("下一张财政发票号码:" + Envior.FIN_NEXT_BILL_NO + ",是否继续?", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 						{
-							if (XtraMessageBox.Show("下一张财政发票号码:" + s_pjh + ",是否继续?", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-							{
-								FinInvoice.Invoice(fa001);
-							}
+							FinInvoice.Invoice(fa001);
 						}
 					}
 				}
@@ -425,5 +424,7 @@ namespace White.Forms
 			}
 			if (!string.IsNullOrEmpty(comboBox1.Text)) this.Calc_Hj(Convert.ToInt32(comboBox1.Text));
 		}
+
+		 
 	}
 }

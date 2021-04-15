@@ -238,142 +238,148 @@ namespace White.BusinessObject
 				DataRow newrow = this.swapdata["nodedata"] as DataRow;
 				TreeListNode newNode = treeList1.AppendNode(newrow, parentNode.Id);
 
+				if (newNode["RG100"].ToString() == "0")
+					CreateRegion_mode0(newrow, newNode);
+				else if (newNode["RG100"].ToString() == "1")
+					CreateRegion_mode1(newrow, newNode);
+
+
 				///创建层
-				DataRow layerRow = null;
-				DataRow bitRow = null;
-				int startbit = int.Parse(newrow["RG010"].ToString());
-				int layerIndex;
-				int colIndex;
-				string rg030 = newrow["RG030"].ToString();                      //起始位置
-				bool flag = true;
+				//DataRow layerRow = null;
+				//DataRow bitRow = null;
+				//int startbit = int.Parse(newrow["RG010"].ToString());
+				//int layerIndex;
+				//int colIndex;
+				//string rg030 = newrow["RG030"].ToString();                      //起始位置
+				//bool flag = true;
 
-				if (rg030 == "0" || rg030 == "2")  //左上或右上
-					layerIndex = int.Parse(newrow["RG020"].ToString());
-				else
-					layerIndex = 1;
-
-
-				for (int i = 1; i <= int.Parse(newrow["RG020"].ToString()); i++) //rg020层数
-				{
-					layerRow = rgset.Ly01.NewRow();
-					layerRow["LY001"] = Tools.GetEntityPK("LY01");
-					layerRow["RG001"] = newNode.GetValue("RG001").ToString();    //寄存架编号
-					layerRow["LY002"] = i;
-					rgset.Ly01.Rows.Add(layerRow);
-
-					if ((rg030 == "0" || rg030 == "1") && flag) //左上或左下
-					{
-						colIndex = 1;
-					}
-					else if ((rg030 == "2" || rg030 == "3") && !flag)
-					{
-						colIndex = 1;
-					}
-					else
-					{
-						colIndex = int.Parse(newrow["RG021"].ToString());
-					}
-
-					///创建号位
-					for (int j = 1; j <= int.Parse(newrow["RG021"].ToString()); j++)  //rg021每层号位数
-					{
-						bitRow = rgset.Bi01.NewRow();
-						bitRow["BI001"] = Tools.GetEntityPK("BI01");
-						bitRow["RG001"] = newNode.GetValue("RG001").ToString();                        //寄存架编号
-						bitRow["BI020"] = newNode.ParentNode.GetValue("RG001").ToString();             //寄存室编号
-						bitRow["BI030"] = newNode.ParentNode.ParentNode.GetValue("RG001").ToString();  //寄存楼编号
-
-						bitRow["BI002"] = startbit + j - 1;
-						bitRow["BI003"] = (startbit + j - 1).ToString().PadLeft(4, '0');
-						bitRow["BI005"] = layerIndex;                               //层号
-						bitRow["BI008"] = colIndex;                                 //列数.
-						bitRow["BI009"] = 0;                                        //价格
-						bitRow["BI007"] = "0";                                      //价格锁
-						bitRow["STATUS"] = "9";                                     //状态-空闲
-						rgset.Bi01.Rows.Add(bitRow);
+				//if (rg030 == "0" || rg030 == "2")  //左上或右上
+				//	layerIndex = int.Parse(newrow["RG020"].ToString());
+				//else
+				//	layerIndex = 1;
 
 
-						//RG033 排列顺序 0-顺序 1-蛇形
-						if (newrow["RG033"].ToString() == "0")
-						{
-							if (rg030 == "0" || rg030 == "1") //左上或左下
-							{
-								if (colIndex >= int.Parse(newrow["RG021"].ToString()))
-									colIndex = 1;
-								else
-									colIndex++;
-							}
-							else
-							{
-								if (colIndex <= 1)
-									colIndex = 1;
-								else
-									colIndex--;
-							}
-						}
-						else
-						{
-							if ((rg030 == "0" || rg030 == "1") && flag) //左上或左下
-							{
-								if (colIndex >= int.Parse(newrow["RG021"].ToString()))
-								{
-									colIndex = int.Parse(newrow["RG021"].ToString());
-									//flag = !flag;
-								}
-								else
-									colIndex++;
-							}
-							else if ((rg030 == "0" || rg030 == "1") && !flag)
-							{
-								if (colIndex <= 1)
-								{
-									colIndex = 1;
-									//flag = !flag;
-								}
-								else
-								{
-									colIndex--;
-								}
-							}
-							else if ((rg030 == "2" || rg030 == "3") && flag)
-							{
-								if (colIndex <= 1)
-								{
-									colIndex = 1;
-									//flag = !flag;
-								}
-								else
-								{
-									colIndex--;
-								}
-							}
-							else if ((rg030 == "2" || rg030 == "3") && !flag)
-							{
-								if (colIndex >= int.Parse(newrow["RG021"].ToString()))
-								{
-									colIndex = int.Parse(newrow["RG021"].ToString());
-									//flag = !flag;
-								}
-								else
-								{
-									colIndex++;
-								}
-							}
+				//for (int i = 1; i <= int.Parse(newrow["RG020"].ToString()); i++) //rg020层数
+				//{
+				//	layerRow = rgset.Ly01.NewRow();
+				//	layerRow["LY001"] = Tools.GetEntityPK("LY01");
+				//	layerRow["RG001"] = newNode.GetValue("RG001").ToString();    //寄存架编号
+				//	layerRow["LY002"] = i;
+				//	rgset.Ly01.Rows.Add(layerRow);
 
-						}
-					}
-					startbit += int.Parse(newrow["RG021"].ToString());
+				//	if ((rg030 == "0" || rg030 == "1") && flag) //左上或左下
+				//	{
+				//		colIndex = 1;
+				//	}
+				//	else if ((rg030 == "2" || rg030 == "3") && !flag)
+				//	{
+				//		colIndex = 1;
+				//	}
+				//	else
+				//	{
+				//		colIndex = int.Parse(newrow["RG021"].ToString());
+				//	}
 
-					if (newrow["RG033"].ToString() == "1")
-					{
-						flag = !flag;
-					}
+				//	///创建号位
+				//	for (int j = 1; j <= int.Parse(newrow["RG021"].ToString()); j++)  //rg021每层号位数
+				//	{
+				//		bitRow = rgset.Bi01.NewRow();
+				//		bitRow["BI001"] = Tools.GetEntityPK("BI01");
+				//		bitRow["RG001"] = newNode.GetValue("RG001").ToString();                        //寄存架编号
+				//		bitRow["BI020"] = newNode.ParentNode.GetValue("RG001").ToString();             //寄存室编号
+				//		bitRow["BI030"] = newNode.ParentNode.ParentNode.GetValue("RG001").ToString();  //寄存楼编号
 
-					if (rg030 == "0" || rg030 == "2")  //左上或右上
-						layerIndex--;
-					else
-						layerIndex++;
-				}
+				//		bitRow["BI002"] = startbit + j - 1;
+				//		bitRow["BI003"] = (startbit + j - 1).ToString().PadLeft(4, '0');
+				//		bitRow["BI005"] = layerIndex;                               //层号
+				//		bitRow["BI008"] = colIndex;                                 //列数.
+				//		bitRow["BI009"] = 0;                                        //价格
+				//		bitRow["BI007"] = "0";                                      //价格锁
+				//		bitRow["STATUS"] = "9";                                     //状态-空闲
+				//		rgset.Bi01.Rows.Add(bitRow);
+
+
+				//		//RG033 排列顺序 0-顺序 1-蛇形
+				//		if (newrow["RG033"].ToString() == "0")
+				//		{
+				//			if (rg030 == "0" || rg030 == "1") //左上或左下
+				//			{
+				//				if (colIndex >= int.Parse(newrow["RG021"].ToString()))
+				//					colIndex = 1;
+				//				else
+				//					colIndex++;
+				//			}
+				//			else
+				//			{
+				//				if (colIndex <= 1)
+				//					colIndex = 1;
+				//				else
+				//					colIndex--;
+				//			}
+				//		}
+				//		else
+				//		{
+				//			if ((rg030 == "0" || rg030 == "1") && flag) //左上或左下
+				//			{
+				//				if (colIndex >= int.Parse(newrow["RG021"].ToString()))
+				//				{
+				//					colIndex = int.Parse(newrow["RG021"].ToString());
+				//					//flag = !flag;
+				//				}
+				//				else
+				//					colIndex++;
+				//			}
+				//			else if ((rg030 == "0" || rg030 == "1") && !flag)
+				//			{
+				//				if (colIndex <= 1)
+				//				{
+				//					colIndex = 1;
+				//					//flag = !flag;
+				//				}
+				//				else
+				//				{
+				//					colIndex--;
+				//				}
+				//			}
+				//			else if ((rg030 == "2" || rg030 == "3") && flag)
+				//			{
+				//				if (colIndex <= 1)
+				//				{
+				//					colIndex = 1;
+				//					//flag = !flag;
+				//				}
+				//				else
+				//				{
+				//					colIndex--;
+				//				}
+				//			}
+				//			else if ((rg030 == "2" || rg030 == "3") && !flag)
+				//			{
+				//				if (colIndex >= int.Parse(newrow["RG021"].ToString()))
+				//				{
+				//					colIndex = int.Parse(newrow["RG021"].ToString());
+				//					//flag = !flag;
+				//				}
+				//				else
+				//				{
+				//					colIndex++;
+				//				}
+				//			}
+
+				//		}
+				//	}
+				//	startbit += int.Parse(newrow["RG021"].ToString());
+
+				//	if (newrow["RG033"].ToString() == "1")
+				//	{
+				//		flag = !flag;
+				//	}
+
+				//	if (rg030 == "0" || rg030 == "2")  //左上或右上
+				//		layerIndex--;
+				//	else
+				//		layerIndex++;
+				//}
 
 				treeList1.SetFocusedNode(newNode);
 				DrawGrid(newNode);
@@ -686,5 +692,205 @@ namespace White.BusinessObject
 			DrawGrid(e.Node);
 			SplashScreenManager.CloseDefaultWaitForm();
 		}
+
+
+		/// <summary>
+		/// 制造新排-传统方式
+		/// </summary>
+		/// <param name="newrow"></param>
+		/// <param name="newNode"></param>
+		private void CreateRegion_mode0(DataRow newrow, TreeListNode newNode)
+		{
+			///创建层
+			DataRow layerRow = null;
+			DataRow bitRow = null;
+			int startbit = int.Parse(newrow["RG010"].ToString());
+			int layerIndex;
+			int colIndex;
+			string rg030 = newrow["RG030"].ToString();                      //起始位置
+			bool flag = true;
+
+			if (rg030 == "0" || rg030 == "2")  //左上或右上
+				layerIndex = int.Parse(newrow["RG020"].ToString());
+			else
+				layerIndex = 1;
+
+			for (int i = 1; i <= int.Parse(newrow["RG020"].ToString()); i++) //rg020层数
+			{
+				layerRow = rgset.Ly01.NewRow();
+				layerRow["LY001"] = Tools.GetEntityPK("LY01");
+				layerRow["RG001"] = newNode.GetValue("RG001").ToString();    //寄存架编号
+				layerRow["LY002"] = i;
+				rgset.Ly01.Rows.Add(layerRow);
+
+				if ((rg030 == "0" || rg030 == "1") && flag) //左上或左下
+				{
+					colIndex = 1;
+				}
+				else if ((rg030 == "2" || rg030 == "3") && !flag)
+				{
+					colIndex = 1;
+				}
+				else
+				{
+					colIndex = int.Parse(newrow["RG021"].ToString());
+				}
+
+				///创建号位
+				for (int j = 1; j <= int.Parse(newrow["RG021"].ToString()); j++)  //rg021每层号位数
+				{
+					bitRow = rgset.Bi01.NewRow();
+					bitRow["BI001"] = Tools.GetEntityPK("BI01");
+					bitRow["RG001"] = newNode.GetValue("RG001").ToString();                        //寄存架编号
+					bitRow["BI020"] = newNode.ParentNode.GetValue("RG001").ToString();             //寄存室编号
+					bitRow["BI030"] = newNode.ParentNode.ParentNode.GetValue("RG001").ToString();  //寄存楼编号
+
+					bitRow["BI002"] = startbit + j - 1;
+					bitRow["BI003"] = (startbit + j - 1).ToString().PadLeft(4, '0');
+					bitRow["BI005"] = layerIndex;                               //层号
+					bitRow["BI008"] = colIndex;                                 //列数.
+					bitRow["BI009"] = 0;                                        //价格
+					bitRow["BI007"] = "0";                                      //价格锁
+					bitRow["STATUS"] = "9";                                     //状态-空闲
+					rgset.Bi01.Rows.Add(bitRow);
+
+
+					//RG033 排列顺序 0-顺序 1-蛇形
+					if (newrow["RG033"].ToString() == "0")
+					{
+						if (rg030 == "0" || rg030 == "1") //左上或左下
+						{
+							if (colIndex >= int.Parse(newrow["RG021"].ToString()))
+								colIndex = 1;
+							else
+								colIndex++;
+						}
+						else
+						{
+							if (colIndex <= 1)
+								colIndex = 1;
+							else
+								colIndex--;
+						}
+					}
+					else
+					{
+						if ((rg030 == "0" || rg030 == "1") && flag) //左上或左下
+						{
+							if (colIndex >= int.Parse(newrow["RG021"].ToString()))
+							{
+								colIndex = int.Parse(newrow["RG021"].ToString());
+								//flag = !flag;
+							}
+							else
+								colIndex++;
+						}
+						else if ((rg030 == "0" || rg030 == "1") && !flag)
+						{
+							if (colIndex <= 1)
+							{
+								colIndex = 1;
+								//flag = !flag;
+							}
+							else
+							{
+								colIndex--;
+							}
+						}
+						else if ((rg030 == "2" || rg030 == "3") && flag)
+						{
+							if (colIndex <= 1)
+							{
+								colIndex = 1;
+								//flag = !flag;
+							}
+							else
+							{
+								colIndex--;
+							}
+						}
+						else if ((rg030 == "2" || rg030 == "3") && !flag)
+						{
+							if (colIndex >= int.Parse(newrow["RG021"].ToString()))
+							{
+								colIndex = int.Parse(newrow["RG021"].ToString());
+								//flag = !flag;
+							}
+							else
+							{
+								colIndex++;
+							}
+						}
+
+					}
+				}
+				startbit += int.Parse(newrow["RG021"].ToString());
+
+				if (newrow["RG033"].ToString() == "1")
+				{
+					flag = !flag;
+				}
+
+				if (rg030 == "0" || rg030 == "2")  //左上或右上
+					layerIndex--;
+				else
+					layerIndex++;
+			}			 
+		}
+
+		/// <summary>
+		/// 制造新排-扩展模式
+		/// </summary>
+		/// <param name="newrow"></param>
+		/// <param name="newNode"></param>
+		private void CreateRegion_mode1(DataRow newrow, TreeListNode newNode)
+		{
+			///创建层
+			DataRow layerRow = null;
+			DataRow bitRow = null;
+			int startbit = int.Parse(newrow["RG010"].ToString());
+			int layerIndex;
+			int colIndex;
+
+			layerIndex = 1;
+
+			for (int i = 1; i <= int.Parse(newrow["RG020"].ToString()); i++) //rg020-层数
+			{
+				layerRow = rgset.Ly01.NewRow();
+				layerRow["LY001"] = Tools.GetEntityPK("LY01");
+				layerRow["RG001"] = newNode.GetValue("RG001").ToString();    //寄存架编号
+				layerRow["LY002"] = i;
+				rgset.Ly01.Rows.Add(layerRow);
+
+				colIndex = 1;
+
+				///创建号位
+				for (int j = 1; j <= int.Parse(newrow["RG021"].ToString()); j++)  //rg021每层号位数
+				{
+					bitRow = rgset.Bi01.NewRow();
+					bitRow["BI001"] = Tools.GetEntityPK("BI01");
+					bitRow["RG001"] = newNode.GetValue("RG001").ToString();                        //寄存架编号
+					bitRow["BI020"] = newNode.ParentNode.GetValue("RG001").ToString();             //寄存室编号
+					bitRow["BI030"] = newNode.ParentNode.ParentNode.GetValue("RG001").ToString();  //寄存楼编号
+
+					bitRow["BI002"] = startbit + j - 1;                                              //号位数字编号	
+					bitRow["BI003"] = i.ToString() + j.ToString().PadLeft(2, '0');
+
+					bitRow["BI005"] = layerIndex;                               //层号
+					bitRow["BI008"] = colIndex;                                 //列数.
+					bitRow["BI009"] = 0;                                        //价格
+					bitRow["BI007"] = "0";                                      //价格锁
+					bitRow["STATUS"] = "9";                                     //状态-空闲
+					rgset.Bi01.Rows.Add(bitRow);
+
+					colIndex++;
+
+				}
+				startbit += int.Parse(newrow["RG021"].ToString());
+				layerIndex++;
+			}
+
+		}
+
 	}
 }
