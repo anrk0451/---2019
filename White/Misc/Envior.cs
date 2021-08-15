@@ -64,5 +64,9 @@ namespace White.Misc
 
         public static string WORKSTATIONID { get; set; }     //工作站ID
 
+        public static bool IDC_Reader_State { get; set; }    //身份证读卡器状态
+        public static int IDC_Reader_Rate { get; set; }      //身份证读卡器速率
+        public static int IDC_Reader_Port { get; set; }      //身份证读卡器端口
+
     }
 }

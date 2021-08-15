@@ -105,9 +105,9 @@ namespace White
 
 			if (f_login.DialogResult == DialogResult.OK)  //登录成功处理..........
 			{
-				
 
-				barStaticItem2.Caption = Envior.cur_userName;
+
+				Bs_CURUSER.Caption = Envior.cur_userName;
 				bs_version.Caption = AppInfo.AppVersion;
 				f_login.Dispose();
 
@@ -129,6 +129,42 @@ namespace White
 			Envior.TAX_APPID = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath).AppSettings.Settings["APPID"].Value.ToString();
 			//读取 财政发票 开票点编码
 			Envior.FIN_BILL_SITE = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath).AppSettings.Settings["BILLSITE"].Value.ToString();
+
+			//打开身份证读取器
+			Envior.IDC_Reader_State = false;
+			if (ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath).AppSettings.Settings["IDC_Reader"].Value.ToString() == "1")
+			{
+				Envior.IDC_Reader_Rate = int.Parse(ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath).AppSettings.Settings["IDC_Reader_Rate"].Value.ToString());
+				Envior.IDC_Reader_Port = int.Parse(ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath).AppSettings.Settings["IDC_Reader_Port"].Value.ToString());
+				CVRSDK.CVR_SetComBaudrate(Envior.IDC_Reader_Rate);// 设置波特率
+				if (0 == Envior.IDC_Reader_Port)    //usb
+				{
+					for (int i = 1001; i <= 1016; i++)
+					{
+						if (1 == CVRSDK.CVR_InitComm(i))
+						{
+							Envior.IDC_Reader_State = true;
+							Envior.IDC_Reader_Port = i;
+							break;
+						}
+					}
+				}
+				else if (CVRSDK.CVR_InitComm(Envior.IDC_Reader_Port) == 1)  //UART
+				{
+					Envior.IDC_Reader_State = true;
+				}
+
+				if (!Envior.IDC_Reader_State) XtraMessageBox.Show("打开身份证读卡器失败!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+			}
+			else
+				Envior.IDC_Reader_State = false;
+
+			if (Envior.IDC_Reader_State)
+				bsi_idc.Caption = "已连接";
+			else
+				bsi_idc.Caption = "未连接";
+
+
 		}
 
 		/// <summary>

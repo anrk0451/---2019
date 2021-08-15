@@ -60,7 +60,6 @@
 			this.barButtonItem28 = new DevExpress.XtraBars.BarButtonItem();
 			this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
 			this.Bs_CURUSER = new DevExpress.XtraBars.BarStaticItem();
-			this.barStaticItem2 = new DevExpress.XtraBars.BarStaticItem();
 			this.barButtonItem29 = new DevExpress.XtraBars.BarButtonItem();
 			this.barButtonItem30 = new DevExpress.XtraBars.BarButtonItem();
 			this.barButtonItem31 = new DevExpress.XtraBars.BarButtonItem();
@@ -71,7 +70,6 @@
 			this.barButtonItem36 = new DevExpress.XtraBars.BarButtonItem();
 			this.barButtonItem37 = new DevExpress.XtraBars.BarButtonItem();
 			this.barButtonItem38 = new DevExpress.XtraBars.BarButtonItem();
-			this.barHeaderItem1 = new DevExpress.XtraBars.BarHeaderItem();
 			this.bs_version = new DevExpress.XtraBars.BarStaticItem();
 			this.barButtonItem39 = new DevExpress.XtraBars.BarButtonItem();
 			this.barButtonItem40 = new DevExpress.XtraBars.BarButtonItem();
@@ -92,6 +90,9 @@
 			this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
 			this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
 			this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
+			this.barStaticItem2 = new DevExpress.XtraBars.BarStaticItem();
+			this.barStaticItem3 = new DevExpress.XtraBars.BarStaticItem();
+			this.bsi_idc = new DevExpress.XtraBars.BarStaticItem();
 			((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
 			this.xtraTabControl1.SuspendLayout();
@@ -137,7 +138,6 @@
             this.barButtonItem28,
             this.barStaticItem1,
             this.Bs_CURUSER,
-            this.barStaticItem2,
             this.barButtonItem29,
             this.barButtonItem30,
             this.barButtonItem31,
@@ -148,15 +148,17 @@
             this.barButtonItem36,
             this.barButtonItem37,
             this.barButtonItem38,
-            this.barHeaderItem1,
             this.bs_version,
             this.barButtonItem39,
             this.barButtonItem40,
             this.skinRibbonGalleryBarItem1,
             this.barButtonItem41,
-            this.barButtonItem21});
+            this.barButtonItem21,
+            this.barStaticItem2,
+            this.barStaticItem3,
+            this.bsi_idc});
 			this.ribbon.Location = new System.Drawing.Point(0, 0);
-			this.ribbon.MaxItemId = 52;
+			this.ribbon.MaxItemId = 56;
 			this.ribbon.Name = "ribbon";
 			this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -165,7 +167,7 @@
 			this.ribbon.QuickToolbarItemLinks.Add(this.barButtonItem39);
 			this.ribbon.QuickToolbarItemLinks.Add(this.barButtonItem40);
 			this.ribbon.QuickToolbarItemLinks.Add(this.barButtonItem41);
-			this.ribbon.Size = new System.Drawing.Size(1359, 186);
+			this.ribbon.Size = new System.Drawing.Size(1220, 186);
 			this.ribbon.StatusBar = this.ribbonStatusBar;
 			// 
 			// barButtonItem1
@@ -405,12 +407,6 @@
 			this.Bs_CURUSER.Id = 31;
 			this.Bs_CURUSER.Name = "Bs_CURUSER";
 			// 
-			// barStaticItem2
-			// 
-			this.barStaticItem2.Caption = "使用单位:  牡丹江市第一殡仪馆";
-			this.barStaticItem2.Id = 32;
-			this.barStaticItem2.Name = "barStaticItem2";
-			// 
 			// barButtonItem29
 			// 
 			this.barButtonItem29.Caption = "数据项维护";
@@ -501,12 +497,6 @@
 			this.barButtonItem38.ImageOptions.Image = global::White.Properties.Resources.export_16x16;
 			this.barButtonItem38.ImageOptions.LargeImage = global::White.Properties.Resources.export_32x32;
 			this.barButtonItem38.Name = "barButtonItem38";
-			// 
-			// barHeaderItem1
-			// 
-			this.barHeaderItem1.Caption = "版本号:";
-			this.barHeaderItem1.Id = 45;
-			this.barHeaderItem1.Name = "barHeaderItem1";
 			// 
 			// bs_version
 			// 
@@ -658,12 +648,13 @@
 			this.ribbonStatusBar.ItemLinks.Add(this.barStaticItem1);
 			this.ribbonStatusBar.ItemLinks.Add(this.Bs_CURUSER);
 			this.ribbonStatusBar.ItemLinks.Add(this.barStaticItem2);
-			this.ribbonStatusBar.ItemLinks.Add(this.barHeaderItem1);
+			this.ribbonStatusBar.ItemLinks.Add(this.barStaticItem3);
 			this.ribbonStatusBar.ItemLinks.Add(this.bs_version);
-			this.ribbonStatusBar.Location = new System.Drawing.Point(0, 616);
+			this.ribbonStatusBar.ItemLinks.Add(this.bsi_idc);
+			this.ribbonStatusBar.Location = new System.Drawing.Point(0, 604);
 			this.ribbonStatusBar.Name = "ribbonStatusBar";
 			this.ribbonStatusBar.Ribbon = this.ribbon;
-			this.ribbonStatusBar.Size = new System.Drawing.Size(1359, 29);
+			this.ribbonStatusBar.Size = new System.Drawing.Size(1220, 41);
 			// 
 			// xtraTabControl1
 			// 
@@ -672,7 +663,7 @@
 			this.xtraTabControl1.Location = new System.Drawing.Point(0, 186);
 			this.xtraTabControl1.Name = "xtraTabControl1";
 			this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
-			this.xtraTabControl1.Size = new System.Drawing.Size(1359, 430);
+			this.xtraTabControl1.Size = new System.Drawing.Size(1220, 418);
 			this.xtraTabControl1.TabIndex = 2;
 			this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1});
@@ -683,7 +674,7 @@
 			this.xtraTabPage1.Controls.Add(this.pictureEdit1);
 			this.xtraTabPage1.Name = "xtraTabPage1";
 			this.xtraTabPage1.ShowCloseButton = DevExpress.Utils.DefaultBoolean.False;
-			this.xtraTabPage1.Size = new System.Drawing.Size(1357, 398);
+			this.xtraTabPage1.Size = new System.Drawing.Size(1217, 386);
 			this.xtraTabPage1.Text = "欢迎";
 			// 
 			// pictureEdit1
@@ -698,14 +689,33 @@
 			this.pictureEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
 			this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
 			this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-			this.pictureEdit1.Size = new System.Drawing.Size(1357, 398);
+			this.pictureEdit1.Size = new System.Drawing.Size(1217, 386);
 			this.pictureEdit1.TabIndex = 0;
+			// 
+			// barStaticItem2
+			// 
+			this.barStaticItem2.Caption = "          身份证读卡器:";
+			this.barStaticItem2.Id = 53;
+			this.barStaticItem2.Name = "barStaticItem2";
+			// 
+			// barStaticItem3
+			// 
+			this.barStaticItem3.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+			this.barStaticItem3.Caption = "当前版本:";
+			this.barStaticItem3.Id = 54;
+			this.barStaticItem3.Name = "barStaticItem3";
+			// 
+			// bsi_idc
+			// 
+			this.bsi_idc.Caption = "未连接";
+			this.bsi_idc.Id = 55;
+			this.bsi_idc.Name = "bsi_idc";
 			// 
 			// MainForm
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1359, 645);
+			this.ClientSize = new System.Drawing.Size(1220, 645);
 			this.Controls.Add(this.xtraTabControl1);
 			this.Controls.Add(this.ribbonStatusBar);
 			this.Controls.Add(this.ribbon);
@@ -772,7 +782,6 @@
 		private DevExpress.XtraEditors.PictureEdit pictureEdit1;
 		private DevExpress.XtraBars.BarStaticItem barStaticItem1;
 		private DevExpress.XtraBars.BarStaticItem Bs_CURUSER;
-		private DevExpress.XtraBars.BarStaticItem barStaticItem2;
 		private DevExpress.XtraBars.BarButtonItem barButtonItem29;
 		private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup7;
 		private DevExpress.XtraBars.BarButtonItem barButtonItem30;
@@ -784,12 +793,14 @@
 		private DevExpress.XtraBars.BarButtonItem barButtonItem36;
 		private DevExpress.XtraBars.BarButtonItem barButtonItem37;
 		private DevExpress.XtraBars.BarButtonItem barButtonItem38;
-		private DevExpress.XtraBars.BarHeaderItem barHeaderItem1;
 		private DevExpress.XtraBars.BarStaticItem bs_version;
         private DevExpress.XtraBars.BarButtonItem barButtonItem39;
         private DevExpress.XtraBars.BarButtonItem barButtonItem40;
         private DevExpress.XtraBars.SkinRibbonGalleryBarItem skinRibbonGalleryBarItem1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem41;
         private DevExpress.XtraBars.BarButtonItem barButtonItem21;
-    }
+		private DevExpress.XtraBars.BarStaticItem barStaticItem2;
+		private DevExpress.XtraBars.BarStaticItem barStaticItem3;
+		private DevExpress.XtraBars.BarStaticItem bsi_idc;
+	}
 }

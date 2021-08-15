@@ -14,6 +14,8 @@ using Oracle.ManagedDataAccess.Client;
 using White.Action;
 using White.Misc;
 using White.Domain;
+using White.Dao;
+using System.IO;
 
 namespace White.Forms
 {
@@ -29,9 +31,13 @@ namespace White.Forms
 
         private decimal bitPrice = decimal.Zero;   //号位定价
         private decimal fpfee = decimal.Zero;      //附品费用 	
-        private decimal regfee = decimal.Zero;	   //寄存费用
+        private decimal regfee = decimal.Zero;     //寄存费用
 
-        public Frm_Register()
+		private Ic01 ic01 = null;
+		private Ic01_dao ic01_dao = new Ic01_dao();
+		private bool IDC_FLAG = false;
+
+		public Frm_Register()
         {
             InitializeComponent();
         }
@@ -554,7 +560,20 @@ namespace White.Forms
 				);
 			}
 
-			if(re >0 && source == "0")
+			if (IDC_FLAG)
+			{
+				ic01.ac001 = ac001;
+				ic01_dao.Insert(ic01);
+
+				///更新身份证照片					 
+				FileStream file = new FileStream("zp.bmp", FileMode.Open, FileAccess.Read);
+				Byte[] imgByte = new Byte[file.Length];//把图片转成 Byte型 二进制流
+				file.Read(imgByte, 0, imgByte.Length);//把二进制流读入缓冲区
+				file.Close();
+				MiscAction.Update_IDC_Photo(ic01.ic001, imgByte);
+			}
+
+			if (re >0 && source == "0")
 			{
 				XtraMessageBox.Show("寄存办理成功!","提示",MessageBoxButtons.OK,MessageBoxIcon.Information);
 				DialogResult = DialogResult.OK;
@@ -608,6 +627,154 @@ namespace White.Forms
 				this.Close();
 			}
 		}
-		
+		/// <summary>
+		/// 读取身份证
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void txtedit_rc014_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+		{
+			if (!Envior.IDC_Reader_State)
+			{
+				XtraMessageBox.Show("身份证读卡器未连接!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return;
+			}
+			try
+			{
+				int authenticate = CVRSDK.CVR_Authenticate();
+				if (authenticate == 1)
+				{
+					int readContent = CVRSDK.CVR_Read_Content(4);
+					if (readContent == 1)
+					{
+						FillData();
+						txtEdit_rc050.Focus();
+					}
+					else
+					{
+						XtraMessageBox.Show("读卡失败!", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					}
+				}
+				else
+				{
+					XtraMessageBox.Show("未放卡或卡片放置不正确", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				}
+			}
+			catch (Exception ex)
+			{
+				XtraMessageBox.Show(ex.ToString(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
+
+		private void FillData()
+		{
+			try
+			{
+				int length;
+
+				IDC_FLAG = true;
+
+				// 照片保存在当前目录
+				String szXPPath = "zp.bmp";
+				System.Drawing.Image img = System.Drawing.Image.FromFile(szXPPath);
+				System.Drawing.Image bmp = new System.Drawing.Bitmap(img);
+				img.Dispose();
+				pictureEdit1.Image = bmp;
+
+
+				byte[] name = new byte[128];
+				length = 128;
+				CVRSDK.GetPeopleName(ref name[0], ref length);
+
+				byte[] cnName = new byte[128];
+				length = 128;
+				CVRSDK.GetPeopleChineseName(ref cnName[0], ref length);
+
+				byte[] number = new byte[128];
+				length = 128;
+				CVRSDK.GetPeopleIDCode(ref number[0], ref length);
+
+				byte[] peopleNation = new byte[128];
+				length = 128;
+				CVRSDK.GetPeopleNation(ref peopleNation[0], ref length);
+
+				byte[] peopleNationCode = new byte[128];
+				length = 128;
+				CVRSDK.GetNationCode(ref peopleNationCode[0], ref length);
+
+				byte[] validtermOfStart = new byte[128];
+				length = 128;
+				CVRSDK.GetStartDate(ref validtermOfStart[0], ref length);
+
+				byte[] birthday = new byte[128];
+				length = 128;
+				CVRSDK.GetPeopleBirthday(ref birthday[0], ref length);
+
+				byte[] address = new byte[128];
+				length = 128;
+				CVRSDK.GetPeopleAddress(ref address[0], ref length);
+
+				byte[] validtermOfEnd = new byte[128];
+				length = 128;
+				CVRSDK.GetEndDate(ref validtermOfEnd[0], ref length);
+
+				byte[] signdate = new byte[128];
+				length = 128;
+				CVRSDK.GetDepartment(ref signdate[0], ref length);
+
+				byte[] sex = new byte[128];
+				length = 128;
+				CVRSDK.GetPeopleSex(ref sex[0], ref length);
+
+				byte[] Uid = new byte[128];
+				length = 128;
+
+				//CVRSDK.GetIDCardUID(ref Uid[0], 128);
+
+				byte[] certType = new byte[32];
+				length = 32;
+				CVRSDK.GetCertType(ref certType[0], ref length);
+
+				string strType = System.Text.Encoding.ASCII.GetString(certType);
+				int nStart = strType.IndexOf("I");
+
+				if (ic01 == null)
+				{
+					ic01 = new Ic01();
+					ic01.ic001 = Tools.GetEntityPK("IC01");
+				}
+
+				ic01.ic000 = "0";  //0-逝者 1-家属
+				ic01.ic003 = System.Text.Encoding.GetEncoding("GB2312").GetString(name);    //姓名
+				ic01.ic002 = System.Text.Encoding.GetEncoding("GB2312").GetString(sex).Replace("\0", "").Trim() == "男" ? "0" : "1";
+
+				//出生日期
+				string s_birth = System.Text.Encoding.GetEncoding("GB2312").GetString(birthday).Replace("\0", "").Trim();
+				ic01.ic004 = Convert.ToDateTime(s_birth.Substring(0, 4) + "-" + s_birth.Substring(4, 2) + "-" + s_birth.Substring(6));
+
+				//身份证号
+				ic01.ic014 = System.Text.Encoding.GetEncoding("GB2312").GetString(number).Replace("\0", "").Trim();
+
+				//地址
+				ic01.ic016 = System.Text.Encoding.GetEncoding("GB2312").GetString(address).Replace("\0", "").Trim();
+
+				//签发机关
+				ic01.ic017 = System.Text.Encoding.GetEncoding("GB2312").GetString(signdate).Replace("\0", "").Trim();
+
+				//有效期限
+				ic01.ic018 = System.Text.Encoding.GetEncoding("GB2312").GetString(validtermOfStart).Replace("\0", "").Trim() + "-" + System.Text.Encoding.GetEncoding("GB2312").GetString(validtermOfEnd).Replace("\0", "").Trim();
+
+				txtEdit_rc003.EditValue = ic01.ic003;
+				rg_rc002.EditValue = ic01.ic002;
+
+				txtEdit_rc004.EditValue = MiscAction.Calc_Age_Via_Birth(ic01.ic004.ToString("yyyy-MM-dd"));
+				txtedit_rc014.EditValue = ic01.ic014;
+
+			}
+			catch (Exception ex)
+			{
+				XtraMessageBox.Show(ex.ToString(), "读卡错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
 	}
 }

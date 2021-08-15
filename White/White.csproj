@@ -47,6 +47,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>abiword-4.ico</ApplicationIcon>
@@ -170,6 +171,8 @@
     <Compile Include="BusinessObject\Report_workstation.Designer.cs">
       <DependentUpon>Report_workstation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dao\Ic01_dao.cs" />
+    <Compile Include="Domain\Ic01.cs" />
     <Compile Include="Forms\Frm_refund_select2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -188,6 +191,7 @@
     <Compile Include="Forms\Frm_wsStat.Designer.cs">
       <DependentUpon>Frm_wsStat.cs</DependentUpon>
     </Compile>
+    <Compile Include="Misc\CVRSDK.cs" />
     <Compile Include="Misc\LogUtils.cs" />
     <Compile Include="Report\Item_stat_Report.cs">
       <SubType>Component</SubType>

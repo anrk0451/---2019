@@ -527,5 +527,62 @@ namespace White.Action
 			else
 				return false;
 		}
+
+		/// <summary>
+		/// 指示逝者是否具有身份证信息
+		/// </summary>
+		/// <param name="ac001"></param>
+		/// <returns></returns>
+		public static bool HasIDC(string ac001)
+		{
+			//逝者编号
+			OracleParameter op_ac001 = new OracleParameter("ic_ac001", OracleDbType.Varchar2, 10);
+			op_ac001.Direction = ParameterDirection.Input;
+			op_ac001.Value = ac001;
+
+			object result = SqlAssist.ExecuteFunction("pkg_report.fun_HasIDC", new OracleParameter[] { op_ac001 });
+			if (Convert.ToInt32(result.ToString()) >= 1)
+				return true;
+			else
+				return false;
+		}
+
+		/// <summary>
+		/// 根据出生日期计算精确年龄
+		/// </summary>
+		/// <param name="dt_birth"></param>
+		/// <returns></returns>
+		public static int Calc_Age_Via_Birth(string dt_birth)
+		{
+			//出生日期
+			OracleParameter op_birth = new OracleParameter("ic_birth", OracleDbType.Varchar2, 10);
+			op_birth.Direction = ParameterDirection.Input;
+			op_birth.Value = dt_birth;
+
+			return Convert.ToInt32(SqlAssist.ExecuteFunction("pkg_report.fun_Calc_Age", new OracleParameter[] { op_birth }).ToString());
+		}
+
+
+		/// <summary>
+		/// 更新身份证照片
+		/// </summary>
+		/// <param name="ac001"></param>
+		/// <param name="imgByte"></param>
+		/// <returns></returns>
+		public static int Update_IDC_Photo(string ic001, Byte[] imgByte)
+		{
+			string s_sql = "update ic01 set ic020 = :ic020 where ic001 = :ic001";
+
+			OracleParameter op_ic001 = new OracleParameter("ic001", OracleDbType.Varchar2, 10);
+			op_ic001.Direction = ParameterDirection.Input;
+			op_ic001.Value = ic001;
+
+			OracleParameter op_ic020 = new OracleParameter("ic020", OracleDbType.Blob);
+			op_ic020.Direction = ParameterDirection.Input;
+			op_ic020.Value = imgByte;
+
+			return SqlAssist.ExecuteNonQuery(s_sql, new OracleParameter[] { op_ic020, op_ic001 });
+		}
+
 	}
 }

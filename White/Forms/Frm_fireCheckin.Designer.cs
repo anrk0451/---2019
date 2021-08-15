@@ -65,7 +65,7 @@
 			this.lookUp_ac007 = new DevExpress.XtraEditors.LookUpEdit();
 			this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
 			this.txtedit_ac014 = new DevExpress.XtraEditors.ButtonEdit();
-			this.buttonEdit1 = new DevExpress.XtraEditors.ButtonEdit();
+			this.be_url = new DevExpress.XtraEditors.ButtonEdit();
 			((System.ComponentModel.ISupportInitialize)(this.mem_ac099.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.lookUp_ac060.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.txtEdit_ac055.Properties)).BeginInit();
@@ -87,7 +87,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.lookUp_ac007.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.txtedit_ac014.Properties)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.buttonEdit1.Properties)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.be_url.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// b_exit
@@ -101,9 +101,9 @@
 			this.b_exit.Appearance.Options.UseForeColor = true;
 			this.b_exit.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
 			this.b_exit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.b_exit.Location = new System.Drawing.Point(707, 552);
+			this.b_exit.Location = new System.Drawing.Point(628, 552);
 			this.b_exit.Name = "b_exit";
-			this.b_exit.Size = new System.Drawing.Size(71, 31);
+			this.b_exit.Size = new System.Drawing.Size(63, 31);
 			this.b_exit.TabIndex = 105;
 			this.b_exit.Text = "退出";
 			// 
@@ -117,20 +117,20 @@
 			this.b_ok.Appearance.Options.UseFont = true;
 			this.b_ok.Appearance.Options.UseForeColor = true;
 			this.b_ok.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
-			this.b_ok.Location = new System.Drawing.Point(509, 552);
+			this.b_ok.Location = new System.Drawing.Point(452, 552);
 			this.b_ok.Name = "b_ok";
-			this.b_ok.Size = new System.Drawing.Size(191, 31);
+			this.b_ok.Size = new System.Drawing.Size(170, 31);
 			this.b_ok.TabIndex = 104;
 			this.b_ok.Text = "确定";
 			this.b_ok.Click += new System.EventHandler(this.b_ok_Click);
 			// 
 			// mem_ac099
 			// 
-			this.mem_ac099.Location = new System.Drawing.Point(165, 374);
+			this.mem_ac099.Location = new System.Drawing.Point(147, 374);
 			this.mem_ac099.Name = "mem_ac099";
 			this.mem_ac099.Properties.Appearance.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.mem_ac099.Properties.Appearance.Options.UseFont = true;
-			this.mem_ac099.Size = new System.Drawing.Size(440, 161);
+			this.mem_ac099.Size = new System.Drawing.Size(391, 161);
 			this.mem_ac099.TabIndex = 103;
 			// 
 			// labelControl14
@@ -144,7 +144,7 @@
 			this.labelControl14.LineLocation = DevExpress.XtraEditors.LineLocation.Center;
 			this.labelControl14.LineOrientation = DevExpress.XtraEditors.LabelLineOrientation.Horizontal;
 			this.labelControl14.LineVisible = true;
-			this.labelControl14.Location = new System.Drawing.Point(67, 378);
+			this.labelControl14.Location = new System.Drawing.Point(60, 378);
 			this.labelControl14.Name = "labelControl14";
 			this.labelControl14.Size = new System.Drawing.Size(30, 18);
 			this.labelControl14.TabIndex = 102;
@@ -152,7 +152,7 @@
 			// 
 			// lookUp_ac060
 			// 
-			this.lookUp_ac060.Location = new System.Drawing.Point(655, 154);
+			this.lookUp_ac060.Location = new System.Drawing.Point(582, 154);
 			this.lookUp_ac060.Name = "lookUp_ac060";
 			this.lookUp_ac060.Properties.Appearance.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lookUp_ac060.Properties.Appearance.Options.UseFont = true;
@@ -164,7 +164,7 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SORTID", "排序号", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.Ascending, DevExpress.Utils.DefaultBoolean.Default)});
 			this.lookUp_ac060.Properties.NullText = "";
 			this.lookUp_ac060.Properties.ShowHeader = false;
-			this.lookUp_ac060.Size = new System.Drawing.Size(124, 22);
+			this.lookUp_ac060.Size = new System.Drawing.Size(110, 23);
 			this.lookUp_ac060.TabIndex = 89;
 			// 
 			// labelControl13
@@ -175,7 +175,7 @@
 			this.labelControl13.AppearanceDisabled.Image = null;
 			this.labelControl13.AppearanceHovered.Image = null;
 			this.labelControl13.AppearancePressed.Image = null;
-			this.labelControl13.Location = new System.Drawing.Point(580, 157);
+			this.labelControl13.Location = new System.Drawing.Point(516, 157);
 			this.labelControl13.Name = "labelControl13";
 			this.labelControl13.Size = new System.Drawing.Size(60, 18);
 			this.labelControl13.TabIndex = 101;
@@ -183,11 +183,11 @@
 			// 
 			// txtEdit_ac055
 			// 
-			this.txtEdit_ac055.Location = new System.Drawing.Point(165, 328);
+			this.txtEdit_ac055.Location = new System.Drawing.Point(147, 328);
 			this.txtEdit_ac055.Name = "txtEdit_ac055";
 			this.txtEdit_ac055.Properties.Appearance.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtEdit_ac055.Properties.Appearance.Options.UseFont = true;
-			this.txtEdit_ac055.Size = new System.Drawing.Size(396, 22);
+			this.txtEdit_ac055.Size = new System.Drawing.Size(352, 23);
 			this.txtEdit_ac055.TabIndex = 100;
 			// 
 			// labelControl12
@@ -201,7 +201,7 @@
 			this.labelControl12.LineLocation = DevExpress.XtraEditors.LineLocation.Center;
 			this.labelControl12.LineOrientation = DevExpress.XtraEditors.LabelLineOrientation.Horizontal;
 			this.labelControl12.LineVisible = true;
-			this.labelControl12.Location = new System.Drawing.Point(67, 332);
+			this.labelControl12.Location = new System.Drawing.Point(60, 332);
 			this.labelControl12.Name = "labelControl12";
 			this.labelControl12.Size = new System.Drawing.Size(60, 18);
 			this.labelControl12.TabIndex = 99;
@@ -209,11 +209,11 @@
 			// 
 			// txtEdit_ac051
 			// 
-			this.txtEdit_ac051.Location = new System.Drawing.Point(634, 240);
+			this.txtEdit_ac051.Location = new System.Drawing.Point(564, 240);
 			this.txtEdit_ac051.Name = "txtEdit_ac051";
 			this.txtEdit_ac051.Properties.Appearance.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtEdit_ac051.Properties.Appearance.Options.UseFont = true;
-			this.txtEdit_ac051.Size = new System.Drawing.Size(143, 22);
+			this.txtEdit_ac051.Size = new System.Drawing.Size(127, 23);
 			this.txtEdit_ac051.TabIndex = 98;
 			// 
 			// labelControl11
@@ -227,7 +227,7 @@
 			this.labelControl11.LineLocation = DevExpress.XtraEditors.LineLocation.Center;
 			this.labelControl11.LineOrientation = DevExpress.XtraEditors.LabelLineOrientation.Horizontal;
 			this.labelControl11.LineVisible = true;
-			this.labelControl11.Location = new System.Drawing.Point(580, 243);
+			this.labelControl11.Location = new System.Drawing.Point(516, 242);
 			this.labelControl11.Name = "labelControl11";
 			this.labelControl11.Size = new System.Drawing.Size(38, 18);
 			this.labelControl11.TabIndex = 96;
@@ -235,7 +235,7 @@
 			// 
 			// lookUp_ac052
 			// 
-			this.lookUp_ac052.Location = new System.Drawing.Point(433, 240);
+			this.lookUp_ac052.Location = new System.Drawing.Point(385, 240);
 			this.lookUp_ac052.Name = "lookUp_ac052";
 			this.lookUp_ac052.Properties.Appearance.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lookUp_ac052.Properties.Appearance.Options.UseFont = true;
@@ -248,7 +248,7 @@
 			this.lookUp_ac052.Properties.NullText = "";
 			this.lookUp_ac052.Properties.ShowHeader = false;
 			this.lookUp_ac052.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-			this.lookUp_ac052.Size = new System.Drawing.Size(128, 22);
+			this.lookUp_ac052.Size = new System.Drawing.Size(114, 23);
 			this.lookUp_ac052.TabIndex = 95;
 			// 
 			// labelControl10
@@ -259,7 +259,7 @@
 			this.labelControl10.AppearanceDisabled.Image = null;
 			this.labelControl10.AppearanceHovered.Image = null;
 			this.labelControl10.AppearancePressed.Image = null;
-			this.labelControl10.Location = new System.Drawing.Point(325, 243);
+			this.labelControl10.Location = new System.Drawing.Point(289, 242);
 			this.labelControl10.Name = "labelControl10";
 			this.labelControl10.Size = new System.Drawing.Size(83, 18);
 			this.labelControl10.TabIndex = 94;
@@ -267,11 +267,11 @@
 			// 
 			// txtEdit_ac050
 			// 
-			this.txtEdit_ac050.Location = new System.Drawing.Point(165, 240);
+			this.txtEdit_ac050.Location = new System.Drawing.Point(147, 240);
 			this.txtEdit_ac050.Name = "txtEdit_ac050";
 			this.txtEdit_ac050.Properties.Appearance.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtEdit_ac050.Properties.Appearance.Options.UseFont = true;
-			this.txtEdit_ac050.Size = new System.Drawing.Size(137, 22);
+			this.txtEdit_ac050.Size = new System.Drawing.Size(122, 23);
 			this.txtEdit_ac050.TabIndex = 93;
 			// 
 			// labelControl9
@@ -285,7 +285,7 @@
 			this.labelControl9.LineLocation = DevExpress.XtraEditors.LineLocation.Center;
 			this.labelControl9.LineOrientation = DevExpress.XtraEditors.LabelLineOrientation.Horizontal;
 			this.labelControl9.LineVisible = true;
-			this.labelControl9.Location = new System.Drawing.Point(67, 243);
+			this.labelControl9.Location = new System.Drawing.Point(60, 242);
 			this.labelControl9.Name = "labelControl9";
 			this.labelControl9.Size = new System.Drawing.Size(53, 18);
 			this.labelControl9.TabIndex = 92;
@@ -293,11 +293,11 @@
 			// 
 			// txtEdit_ac008
 			// 
-			this.txtEdit_ac008.Location = new System.Drawing.Point(308, 196);
+			this.txtEdit_ac008.Location = new System.Drawing.Point(274, 196);
 			this.txtEdit_ac008.Name = "txtEdit_ac008";
 			this.txtEdit_ac008.Properties.Appearance.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtEdit_ac008.Properties.Appearance.Options.UseFont = true;
-			this.txtEdit_ac008.Size = new System.Drawing.Size(469, 22);
+			this.txtEdit_ac008.Size = new System.Drawing.Size(417, 23);
 			this.txtEdit_ac008.TabIndex = 91;
 			// 
 			// labelControl7
@@ -308,7 +308,7 @@
 			this.labelControl7.AppearanceDisabled.Image = null;
 			this.labelControl7.AppearanceHovered.Image = null;
 			this.labelControl7.AppearancePressed.Image = null;
-			this.labelControl7.Location = new System.Drawing.Point(342, 157);
+			this.labelControl7.Location = new System.Drawing.Point(304, 157);
 			this.labelControl7.Name = "labelControl7";
 			this.labelControl7.Size = new System.Drawing.Size(68, 18);
 			this.labelControl7.TabIndex = 87;
@@ -317,7 +317,7 @@
 			// dateEdit_ac010
 			// 
 			this.dateEdit_ac010.EditValue = null;
-			this.dateEdit_ac010.Location = new System.Drawing.Point(165, 154);
+			this.dateEdit_ac010.Location = new System.Drawing.Point(147, 154);
 			this.dateEdit_ac010.Name = "dateEdit_ac010";
 			this.dateEdit_ac010.Properties.Appearance.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.dateEdit_ac010.Properties.Appearance.Options.UseFont = true;
@@ -326,29 +326,29 @@
 			this.dateEdit_ac010.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
 			this.dateEdit_ac010.Properties.Mask.UseMaskAsDisplayFormat = true;
-			this.dateEdit_ac010.Size = new System.Drawing.Size(137, 22);
+			this.dateEdit_ac010.Size = new System.Drawing.Size(122, 23);
 			this.dateEdit_ac010.TabIndex = 86;
 			this.dateEdit_ac010.Validating += new System.ComponentModel.CancelEventHandler(this.dateEdit_ac010_Validating);
 			// 
 			// txtEdit_ac009
 			// 
-			this.txtEdit_ac009.Location = new System.Drawing.Point(165, 112);
+			this.txtEdit_ac009.Location = new System.Drawing.Point(147, 112);
 			this.txtEdit_ac009.Name = "txtEdit_ac009";
 			this.txtEdit_ac009.Properties.Appearance.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtEdit_ac009.Properties.Appearance.Options.UseFont = true;
-			this.txtEdit_ac009.Size = new System.Drawing.Size(613, 22);
+			this.txtEdit_ac009.Size = new System.Drawing.Size(545, 23);
 			this.txtEdit_ac009.TabIndex = 85;
 			// 
 			// txtEdit_ac004
 			// 
-			this.txtEdit_ac004.Location = new System.Drawing.Point(683, 31);
+			this.txtEdit_ac004.Location = new System.Drawing.Point(607, 31);
 			this.txtEdit_ac004.Name = "txtEdit_ac004";
 			this.txtEdit_ac004.Properties.Appearance.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtEdit_ac004.Properties.Appearance.Options.UseFont = true;
 			this.txtEdit_ac004.Properties.Mask.BeepOnError = true;
 			this.txtEdit_ac004.Properties.Mask.EditMask = "n0";
 			this.txtEdit_ac004.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-			this.txtEdit_ac004.Size = new System.Drawing.Size(96, 22);
+			this.txtEdit_ac004.Size = new System.Drawing.Size(85, 23);
 			this.txtEdit_ac004.TabIndex = 83;
 			this.txtEdit_ac004.Validating += new System.ComponentModel.CancelEventHandler(this.txtEdit_ac004_Validating);
 			// 
@@ -360,7 +360,7 @@
 			this.labelControl3.AppearanceDisabled.Image = null;
 			this.labelControl3.AppearanceHovered.Image = null;
 			this.labelControl3.AppearancePressed.Image = null;
-			this.labelControl3.Location = new System.Drawing.Point(626, 32);
+			this.labelControl3.Location = new System.Drawing.Point(556, 32);
 			this.labelControl3.Name = "labelControl3";
 			this.labelControl3.Size = new System.Drawing.Size(38, 18);
 			this.labelControl3.TabIndex = 82;
@@ -369,7 +369,7 @@
 			// rg_ac002
 			// 
 			this.rg_ac002.EditValue = "0";
-			this.rg_ac002.Location = new System.Drawing.Point(405, 28);
+			this.rg_ac002.Location = new System.Drawing.Point(360, 28);
 			this.rg_ac002.Name = "rg_ac002";
 			this.rg_ac002.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
 			this.rg_ac002.Properties.Appearance.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -379,7 +379,7 @@
 			this.rg_ac002.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
             new DevExpress.XtraEditors.Controls.RadioGroupItem("0", "男"),
             new DevExpress.XtraEditors.Controls.RadioGroupItem("1", "女")});
-			this.rg_ac002.Size = new System.Drawing.Size(186, 24);
+			this.rg_ac002.Size = new System.Drawing.Size(165, 24);
 			this.rg_ac002.TabIndex = 81;
 			// 
 			// labelControl2
@@ -390,7 +390,7 @@
 			this.labelControl2.AppearanceDisabled.Image = null;
 			this.labelControl2.AppearanceHovered.Image = null;
 			this.labelControl2.AppearancePressed.Image = null;
-			this.labelControl2.Location = new System.Drawing.Point(342, 32);
+			this.labelControl2.Location = new System.Drawing.Point(304, 32);
 			this.labelControl2.Name = "labelControl2";
 			this.labelControl2.Size = new System.Drawing.Size(38, 18);
 			this.labelControl2.TabIndex = 80;
@@ -398,11 +398,11 @@
 			// 
 			// txtEdit_ac003
 			// 
-			this.txtEdit_ac003.Location = new System.Drawing.Point(165, 31);
+			this.txtEdit_ac003.Location = new System.Drawing.Point(147, 31);
 			this.txtEdit_ac003.Name = "txtEdit_ac003";
 			this.txtEdit_ac003.Properties.Appearance.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtEdit_ac003.Properties.Appearance.Options.UseFont = true;
-			this.txtEdit_ac003.Size = new System.Drawing.Size(137, 22);
+			this.txtEdit_ac003.Size = new System.Drawing.Size(122, 23);
 			this.txtEdit_ac003.TabIndex = 79;
 			// 
 			// labelControl8
@@ -416,7 +416,7 @@
 			this.labelControl8.LineLocation = DevExpress.XtraEditors.LineLocation.Center;
 			this.labelControl8.LineOrientation = DevExpress.XtraEditors.LabelLineOrientation.Horizontal;
 			this.labelControl8.LineVisible = true;
-			this.labelControl8.Location = new System.Drawing.Point(67, 200);
+			this.labelControl8.Location = new System.Drawing.Point(60, 200);
 			this.labelControl8.Name = "labelControl8";
 			this.labelControl8.Size = new System.Drawing.Size(38, 18);
 			this.labelControl8.TabIndex = 78;
@@ -430,7 +430,7 @@
 			this.labelControl6.AppearanceDisabled.Image = null;
 			this.labelControl6.AppearanceHovered.Image = null;
 			this.labelControl6.AppearancePressed.Image = null;
-			this.labelControl6.Location = new System.Drawing.Point(67, 157);
+			this.labelControl6.Location = new System.Drawing.Point(60, 157);
 			this.labelControl6.Name = "labelControl6";
 			this.labelControl6.Size = new System.Drawing.Size(60, 18);
 			this.labelControl6.TabIndex = 77;
@@ -444,7 +444,7 @@
 			this.labelControl5.AppearanceDisabled.Image = null;
 			this.labelControl5.AppearanceHovered.Image = null;
 			this.labelControl5.AppearancePressed.Image = null;
-			this.labelControl5.Location = new System.Drawing.Point(67, 115);
+			this.labelControl5.Location = new System.Drawing.Point(60, 115);
 			this.labelControl5.Name = "labelControl5";
 			this.labelControl5.Size = new System.Drawing.Size(60, 18);
 			this.labelControl5.TabIndex = 76;
@@ -458,7 +458,7 @@
 			this.labelControl4.AppearanceDisabled.Image = null;
 			this.labelControl4.AppearanceHovered.Image = null;
 			this.labelControl4.AppearancePressed.Image = null;
-			this.labelControl4.Location = new System.Drawing.Point(67, 74);
+			this.labelControl4.Location = new System.Drawing.Point(60, 74);
 			this.labelControl4.Name = "labelControl4";
 			this.labelControl4.Size = new System.Drawing.Size(60, 18);
 			this.labelControl4.TabIndex = 75;
@@ -472,7 +472,7 @@
 			this.labelControl1.AppearanceDisabled.Image = null;
 			this.labelControl1.AppearanceHovered.Image = null;
 			this.labelControl1.AppearancePressed.Image = null;
-			this.labelControl1.Location = new System.Drawing.Point(67, 32);
+			this.labelControl1.Location = new System.Drawing.Point(60, 32);
 			this.labelControl1.Name = "labelControl1";
 			this.labelControl1.Size = new System.Drawing.Size(68, 18);
 			this.labelControl1.TabIndex = 74;
@@ -480,7 +480,7 @@
 			// 
 			// lookUp_ac005
 			// 
-			this.lookUp_ac005.Location = new System.Drawing.Point(433, 154);
+			this.lookUp_ac005.Location = new System.Drawing.Point(385, 154);
 			this.lookUp_ac005.Name = "lookUp_ac005";
 			this.lookUp_ac005.Properties.Appearance.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lookUp_ac005.Properties.Appearance.Options.UseFont = true;
@@ -492,21 +492,21 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SORTID", "排序号", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
 			this.lookUp_ac005.Properties.NullText = "";
 			this.lookUp_ac005.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-			this.lookUp_ac005.Size = new System.Drawing.Size(128, 22);
+			this.lookUp_ac005.Size = new System.Drawing.Size(114, 23);
 			this.lookUp_ac005.TabIndex = 88;
 			// 
 			// txtEdit_ac150
 			// 
-			this.txtEdit_ac150.Location = new System.Drawing.Point(165, 284);
+			this.txtEdit_ac150.Location = new System.Drawing.Point(147, 284);
 			this.txtEdit_ac150.Name = "txtEdit_ac150";
 			this.txtEdit_ac150.Properties.Appearance.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtEdit_ac150.Properties.Appearance.Options.UseFont = true;
-			this.txtEdit_ac150.Size = new System.Drawing.Size(137, 22);
+			this.txtEdit_ac150.Size = new System.Drawing.Size(122, 23);
 			this.txtEdit_ac150.TabIndex = 107;
 			// 
 			// lookUp_ac152
 			// 
-			this.lookUp_ac152.Location = new System.Drawing.Point(433, 284);
+			this.lookUp_ac152.Location = new System.Drawing.Point(385, 284);
 			this.lookUp_ac152.Name = "lookUp_ac152";
 			this.lookUp_ac152.Properties.Appearance.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lookUp_ac152.Properties.Appearance.Options.UseFont = true;
@@ -519,17 +519,17 @@
 			this.lookUp_ac152.Properties.NullText = "";
 			this.lookUp_ac152.Properties.ShowHeader = false;
 			this.lookUp_ac152.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-			this.lookUp_ac152.Size = new System.Drawing.Size(128, 22);
+			this.lookUp_ac152.Size = new System.Drawing.Size(114, 23);
 			this.lookUp_ac152.TabIndex = 108;
 			// 
 			// txtEdit_ac151
 			// 
 			this.txtEdit_ac151.EditValue = "";
-			this.txtEdit_ac151.Location = new System.Drawing.Point(634, 284);
+			this.txtEdit_ac151.Location = new System.Drawing.Point(564, 284);
 			this.txtEdit_ac151.Name = "txtEdit_ac151";
 			this.txtEdit_ac151.Properties.Appearance.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtEdit_ac151.Properties.Appearance.Options.UseFont = true;
-			this.txtEdit_ac151.Size = new System.Drawing.Size(143, 22);
+			this.txtEdit_ac151.Size = new System.Drawing.Size(127, 23);
 			this.txtEdit_ac151.TabIndex = 109;
 			// 
 			// labelControl15
@@ -543,7 +543,7 @@
 			this.labelControl15.LineLocation = DevExpress.XtraEditors.LineLocation.Center;
 			this.labelControl15.LineOrientation = DevExpress.XtraEditors.LabelLineOrientation.Horizontal;
 			this.labelControl15.LineVisible = true;
-			this.labelControl15.Location = new System.Drawing.Point(580, 332);
+			this.labelControl15.Location = new System.Drawing.Point(516, 332);
 			this.labelControl15.Name = "labelControl15";
 			this.labelControl15.Size = new System.Drawing.Size(38, 18);
 			this.labelControl15.TabIndex = 110;
@@ -551,7 +551,7 @@
 			// 
 			// lookup_gtype
 			// 
-			this.lookup_gtype.Location = new System.Drawing.Point(634, 328);
+			this.lookup_gtype.Location = new System.Drawing.Point(564, 328);
 			this.lookup_gtype.Name = "lookup_gtype";
 			this.lookup_gtype.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -559,12 +559,12 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ST003", "")});
 			this.lookup_gtype.Properties.NullText = "";
 			this.lookup_gtype.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-			this.lookup_gtype.Size = new System.Drawing.Size(143, 24);
+			this.lookup_gtype.Size = new System.Drawing.Size(127, 24);
 			this.lookup_gtype.TabIndex = 111;
 			// 
 			// lookUp_ac007
 			// 
-			this.lookUp_ac007.Location = new System.Drawing.Point(165, 196);
+			this.lookUp_ac007.Location = new System.Drawing.Point(147, 196);
 			this.lookUp_ac007.Name = "lookUp_ac007";
 			this.lookUp_ac007.Properties.Appearance.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lookUp_ac007.Properties.Appearance.Options.UseFont = true;
@@ -577,48 +577,51 @@
 			this.lookUp_ac007.Properties.NullText = "";
 			this.lookUp_ac007.Properties.ShowHeader = false;
 			this.lookUp_ac007.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-			this.lookUp_ac007.Size = new System.Drawing.Size(137, 22);
+			this.lookUp_ac007.Size = new System.Drawing.Size(122, 23);
 			this.lookUp_ac007.TabIndex = 90;
 			// 
 			// pictureEdit1
 			// 
-			this.pictureEdit1.Location = new System.Drawing.Point(611, 374);
+			this.pictureEdit1.Location = new System.Drawing.Point(543, 374);
 			this.pictureEdit1.Name = "pictureEdit1";
 			this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-			this.pictureEdit1.Size = new System.Drawing.Size(168, 161);
+			this.pictureEdit1.Size = new System.Drawing.Size(149, 161);
 			this.pictureEdit1.TabIndex = 112;
 			// 
 			// txtedit_ac014
 			// 
-			this.txtedit_ac014.Location = new System.Drawing.Point(165, 71);
+			this.txtedit_ac014.Location = new System.Drawing.Point(147, 71);
 			this.txtedit_ac014.Name = "txtedit_ac014";
 			this.txtedit_ac014.Properties.Appearance.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtedit_ac014.Properties.Appearance.Options.UseFont = true;
 			this.txtedit_ac014.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search)});
-			this.txtedit_ac014.Size = new System.Drawing.Size(396, 22);
+			this.txtedit_ac014.Size = new System.Drawing.Size(352, 23);
 			this.txtedit_ac014.TabIndex = 84;
+			this.txtedit_ac014.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.txtedit_ac014_ButtonClick);
 			this.txtedit_ac014.Validating += new System.ComponentModel.CancelEventHandler(this.txtedit_ac014_Validating);
 			// 
-			// buttonEdit1
+			// be_url
 			// 
-			this.buttonEdit1.Location = new System.Drawing.Point(580, 71);
-			this.buttonEdit1.Name = "buttonEdit1";
-			this.buttonEdit1.Properties.Appearance.ForeColor = System.Drawing.Color.White;
-			this.buttonEdit1.Properties.Appearance.Options.UseForeColor = true;
-			this.buttonEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+			this.be_url.ImeMode = System.Windows.Forms.ImeMode.Disable;
+			this.be_url.Location = new System.Drawing.Point(516, 71);
+			this.be_url.Name = "be_url";
+			this.be_url.Properties.Appearance.ForeColor = System.Drawing.Color.White;
+			this.be_url.Properties.Appearance.Options.UseForeColor = true;
+			this.be_url.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-			this.buttonEdit1.Size = new System.Drawing.Size(199, 24);
-			this.buttonEdit1.TabIndex = 113;
-			this.buttonEdit1.ToolTip = "扫描死亡证明二维码";
-			this.buttonEdit1.EditValueChanged += new System.EventHandler(this.buttonEdit1_EditValueChanged);
+			this.be_url.Size = new System.Drawing.Size(177, 24);
+			this.be_url.TabIndex = 113;
+			this.be_url.ToolTip = "扫描死亡证明二维码";
+			this.be_url.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.buttonEdit1_ButtonClick);
+			this.be_url.Validating += new System.ComponentModel.CancelEventHandler(this.be_url_Validating);
 			// 
 			// Frm_fireCheckin
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(845, 600);
-			this.Controls.Add(this.buttonEdit1);
+			this.ClientSize = new System.Drawing.Size(764, 613);
+			this.Controls.Add(this.be_url);
 			this.Controls.Add(this.pictureEdit1);
 			this.Controls.Add(this.lookUp_ac007);
 			this.Controls.Add(this.lookup_gtype);
@@ -680,7 +683,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.lookUp_ac007.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.txtedit_ac014.Properties)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.buttonEdit1.Properties)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.be_url.Properties)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -725,6 +728,6 @@
         private DevExpress.XtraEditors.LookUpEdit lookUp_ac007;
 		private DevExpress.XtraEditors.PictureEdit pictureEdit1;
 		private DevExpress.XtraEditors.ButtonEdit txtedit_ac014;
-		private DevExpress.XtraEditors.ButtonEdit buttonEdit1;
+		private DevExpress.XtraEditors.ButtonEdit be_url;
 	}
 }
